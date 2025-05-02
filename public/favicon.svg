@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1a1a1a; }
+      .text { fill: #f7f1e6; }
+      .accent { fill: #a0a0a0; }
+    }
+    @media (prefers-color-scheme: light) {
+      .bg { fill: #f7f1e6; }
+      .text { fill: #1a1a1a; }
+      .accent { fill: #3a3a3a; }
+    }
+  </style>
+  <rect class="bg" width="100" height="100" rx="10" />
+  <text class="text" x="50" y="50" font-family="monospace" font-size="35" font-weight="bold" text-anchor="middle" dominant-baseline="middle">L</text>
+  <text class="accent" x="70" y="50" font-family="monospace" font-size="35" font-weight="bold" text-anchor="middle" dominant-baseline="middle">K</text>
+  <text class="text" x="50" y="75" font-family="monospace" font-size="15" font-weight="bold" text-anchor="middle" dominant-baseline="middle">TECH</text>
+</svg>
