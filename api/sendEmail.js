@@ -1,4 +1,5 @@
-const nodemailer = require('nodemailer');
+// Vercel serverless function
+import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   // Only allow POST method
@@ -58,7 +59,8 @@ ${services.length > 0 ? `<p><strong>Services interested in:</strong> ${services.
     };
 
     // Send email
-    await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Message sent: %s', info.messageId);
 
     // Return success response
     return res.status(200).json({ success: true, message: 'Email sent successfully' });

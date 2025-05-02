@@ -17,9 +17,9 @@ import TestimonialSlider from './TestimonialSlider';
 import PortfolioShowcase from './PortfolioShowcase';
 import logoImage from '../assets/images/logo.png';
 
-const EnhancedLKHNWebsite = () => {
+const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
   const [loading, setLoading] = useState(true);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState(initialSection);
   const [darkMode, setDarkMode] = useState(true);
   const [scrollY, setScrollY] = useState(0);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -34,6 +34,16 @@ const EnhancedLKHNWebsite = () => {
       // Additional loading steps could be added here
       await new Promise(resolve => setTimeout(resolve, 1000)); // Final delay
       setLoading(false);
+      
+      // After loading, scroll to the initial section if not home
+      if (initialSection !== 'home') {
+        setTimeout(() => {
+          const sectionElement = document.getElementById(initialSection);
+          if (sectionElement) {
+            sectionElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
     };
     
     sequence();
@@ -62,7 +72,7 @@ const EnhancedLKHNWebsite = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [initialSection]);
 
   // Handle section navigation with smooth scrolling
   const navigateToSection = (section) => {
@@ -175,6 +185,15 @@ const EnhancedLKHNWebsite = () => {
           
           {/* Hero Section - Enhanced with parallax effects */}
           <section id="home" className={`min-h-screen flex items-center pt-20 relative ${activeSection === 'home' ? 'block' : 'block'}`}>
+            {/* Added hero background image from Unsplash */}
+            <div className="absolute inset-0 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1623824204241-f851d3bcfaf5?auto=format&fit=crop&q=80" 
+                alt="Digital interface" 
+                className="section-image bg-pulse"
+              />
+            </div>
+            
             <Parallax speed={-0.5} className="absolute top-20 right-10 opacity-20 hidden md:block">
               <div className="text-[120px] font-bold text-gray-700">LKHN</div>
             </Parallax>
@@ -268,6 +287,7 @@ const EnhancedLKHNWebsite = () => {
                   title="AI Automation"
                   description="Custom workflow solutions that streamline operations while maintaining the human touch."
                   features={["Process Optimization", "Workflow Automation", "AI Integration", "Custom Solutions"]}
+                  imageUrl="https://media.istockphoto.com/id/2166183185/photo/artificial-intelligence-developer-team-meeting-at-night.webp"
                 />
                 
                 <ServiceCard 
@@ -275,6 +295,7 @@ const EnhancedLKHNWebsite = () => {
                   title="Technology Consulting"
                   description="Strategic guidance for digital transformation with a focus on simplicity."
                   features={["Digital Strategy", "System Architecture", "Technology Roadmaps", "Implementation Planning"]}
+                  imageUrl="https://media.istockphoto.com/id/2169874293/photo/global-business-concept-communication-network-management-strategy-digital-transformation.webp"
                 />
                 
                 <ServiceCard 
@@ -282,6 +303,7 @@ const EnhancedLKHNWebsite = () => {
                   title="Minimalist Interface Design"
                   description="Clean, intuitive digital experiences that reduce cognitive load and enhance user focus."
                   features={["UX/UI Design", "User Research", "Responsive Interfaces", "Design Systems"]}
+                  imageUrl="https://images.unsplash.com/photo-1725764819627-9fcda8350344?auto=format&fit=crop&q=80"
                 />
                 
                 <ServiceCard 
@@ -289,6 +311,7 @@ const EnhancedLKHNWebsite = () => {
                   title="Work-Life Balance Solutions"
                   description="Technology that respects human wellbeing and prevents digital burnout."
                   features={["Digital Wellbeing", "Focused Productivity", "Notification Management", "Context Awareness"]}
+                  imageUrl="https://images.unsplash.com/photo-1648912795679-a4d06075c860?auto=format&fit=crop&q=80"
                 />
                 
                 <ServiceCard 
@@ -296,6 +319,7 @@ const EnhancedLKHNWebsite = () => {
                   title="Digital Ecosystem Development"
                   description="Comprehensive digital environments that connect business operations with customer experiences."
                   features={["Platform Integration", "API Development", "Microservices", "Scalable Architecture"]}
+                  imageUrl="https://media.istockphoto.com/id/2114295998/photo/asian-and-indian-developer-devops-team-discussion-about-coding-promgram-with-software.webp"
                 />
                 
                 <ServiceCard 
@@ -303,6 +327,7 @@ const EnhancedLKHNWebsite = () => {
                   title="Performance Optimization"
                   description="Fine-tuning digital assets for maximum speed, efficiency and user satisfaction."
                   features={["Speed Optimization", "Resource Efficiency", "Load Testing", "User Experience Enhancement"]}
+                  imageUrl="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80"
                 />
               </div>
               
@@ -320,6 +345,15 @@ const EnhancedLKHNWebsite = () => {
           
           {/* About Section - Enhanced with ThreeDCard */}
           <section id="about" className={`min-h-screen py-20 relative ${activeSection === 'about' ? 'block' : 'block'}`}>
+            {/* Added about section background image */}
+            <div className="absolute inset-0 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?auto=format&fit=crop&q=80" 
+                alt="Modern tech workspace" 
+                className="section-image bg-pulse"
+              />
+            </div>
+            
             <div className="container mx-auto px-4 relative z-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
@@ -370,6 +404,17 @@ const EnhancedLKHNWebsite = () => {
                     <div className="absolute inset-0 opacity-10">
                       <div className="absolute top-0 left-0 w-full h-full code-background"></div>
                     </div>
+                    
+                    {/* Added team image */}
+                    <div className="rounded-lg overflow-hidden mb-6 image-card">
+                      <img 
+                        src="https://plus.unsplash.com/premium_photo-1711051475003-ed54686c79e3?auto=format&fit=crop&q=80" 
+                        alt="Tech professional at work" 
+                        className="w-full h-48 object-cover"
+                      />
+                      <div className="image-overlay"></div>
+                    </div>
+                    
                     <div className="text-center z-10 space-y-6">
                       <img 
                         src={logoImage} 
@@ -415,6 +460,15 @@ const EnhancedLKHNWebsite = () => {
           
           {/* Markets Section - Enhanced with portfolio showcase */}
           <section id="markets" className={`min-h-screen py-20 relative ${activeSection === 'markets' ? 'block' : 'block'}`}>
+            {/* Added market background image */}
+            <div className="absolute inset-0 overflow-hidden">
+              <img 
+                src="https://plus.unsplash.com/premium_photo-1682310178386-1d20be620733?auto=format&fit=crop&q=80" 
+                alt="Data visualization" 
+                className="section-image bg-pulse"
+              />
+            </div>
+            
             <div className="container mx-auto px-4 relative z-10">
               <div className="text-center mb-16">
                 <div className="inline-block mb-3 p-3 rounded-full bg-gray-800 bg-opacity-50">
@@ -432,43 +486,61 @@ const EnhancedLKHNWebsite = () => {
                     icon: <Briefcase size={24} />,
                     title: "Small & Medium Businesses",
                     description: "Accessible automation and interface solutions sized for growing companies.",
-                    cases: "Helped 20+ SMBs reduce operational costs by 30% through targeted automation"
+                    cases: "Helped 20+ SMBs reduce operational costs by 30% through targeted automation",
+                    imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80"
                   },
                   {
                     icon: <Heart size={24} />,
                     title: "Healthcare",
                     description: "Simplified data management that puts the focus back on patient care.",
-                    cases: "Streamlined clinical workflows by 40% at regional healthcare providers"
+                    cases: "Streamlined clinical workflows by 40% at regional healthcare providers",
+                    imageUrl: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80"
                   },
                   {
                     icon: <BookOpen size={24} />,
                     title: "Education",
                     description: "Streamlined administrative systems that support learning environments.",
-                    cases: "Digitized admissions process for 5 universities, increasing efficiency by 60%"
+                    cases: "Digitized admissions process for 5 universities, increasing efficiency by 60%",
+                    imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80"
                   },
                   {
                     icon: <BarChart2 size={24} />,
                     title: "Financial Services",
                     description: "Optimized client interfaces that simplify complex financial data.",
-                    cases: "Developed dashboards that improved client portfolio comprehension by 45%"
+                    cases: "Developed dashboards that improved client portfolio comprehension by 45%",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1682310075673-b408eb1ca6fd?auto=format&fit=crop&q=80"
                   },
                   {
                     icon: <Database size={24} />,
                     title: "Government",
                     description: "Digital service delivery that connects citizens with resources efficiently.",
-                    cases: "Reduced municipal service request processing time by 70% in 3 cities"
+                    cases: "Reduced municipal service request processing time by 70% in 3 cities",
+                    imageUrl: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80"
                   },
                   {
                     icon: <Home size={24} />,
                     title: "Hospitality",
                     description: "Guest experience technology that balances automation with human connection.",
-                    cases: "Increased guest satisfaction scores by 28% with personalized digital concierge"
+                    cases: "Increased guest satisfaction scores by 28% with personalized digital concierge",
+                    imageUrl: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80"
                   }
                 ].map((market, index) => (
                   <div 
                     key={index} 
                     className="glass-card rounded-xl p-6 border border-gray-700 shadow-lg transform hover:translate-y-[-5px] hover:bg-opacity-30 transition-all duration-300"
                   >
+                    {/* Added market card image */}
+                    {market.imageUrl && (
+                      <div className="w-full h-36 mb-4 overflow-hidden rounded-md image-card">
+                        <img 
+                          src={market.imageUrl}
+                          alt={market.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="image-overlay"></div>
+                      </div>
+                    )}
+                  
                     <div className="text-gray-400 mb-4 p-3 bg-gray-800 rounded-md inline-block">
                       {market.icon}
                     </div>
@@ -502,6 +574,15 @@ const EnhancedLKHNWebsite = () => {
           
           {/* Contact Section - Enhanced with interactive form */}
           <section id="contact" className={`min-h-screen py-20 relative ${activeSection === 'contact' ? 'block' : 'block'}`}>
+            {/* Added network visualization background for contact section */}
+            <div className="absolute inset-0 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1664526937033-fe2c11f1be25?auto=format&fit=crop&q=80" 
+                alt="Network visualization" 
+                className="section-image bg-pulse"
+              />
+            </div>
+            
             <div className="container mx-auto px-4 relative z-10">
               <div className="text-center mb-16">
                 <div className="inline-block mb-3 p-3 rounded-full bg-gray-800 bg-opacity-50">
@@ -529,6 +610,16 @@ const EnhancedLKHNWebsite = () => {
                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                           </div>
                           <div className="text-xs text-gray-500">contact.info</div>
+                        </div>
+                        
+                        {/* Enhanced contact card with additional imagery */}
+                        <div className="rounded-lg overflow-hidden mb-6 image-card">
+                          <img 
+                            src="https://images.unsplash.com/photo-1647356191320-d7a1f80ca777?auto=format&fit=crop&q=80" 
+                            alt="Network visualization" 
+                            className="w-full h-36 object-cover"
+                          />
+                          <div className="image-overlay"></div>
                         </div>
                         
                         <div className="flex justify-center my-6">

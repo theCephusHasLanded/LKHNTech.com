@@ -2,13 +2,24 @@ import React, { useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 import ThreeDCard from './ThreeDCard';
 
-const ServiceCard = ({ icon, title, description, features = [] }) => {
+const ServiceCard = ({ icon, title, description, features = [], imageUrl }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
     <ThreeDCard>
       <div className="glass-card rounded-xl p-6 border border-gray-700 shadow-lg h-full flex flex-col justify-between">
         <div>
+          {imageUrl && (
+            <div className="w-full h-32 mb-4 overflow-hidden rounded-md image-card">
+              <img 
+                src={imageUrl} 
+                alt={title} 
+                className="w-full h-full object-cover"
+              />
+              <div className="image-overlay"></div>
+            </div>
+          )}
+          
           <div className="text-gray-400 mb-4 p-3 bg-gray-800 rounded-md inline-block">
             {icon}
           </div>

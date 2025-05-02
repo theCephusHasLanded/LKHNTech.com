@@ -32,10 +32,14 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-image: radial-gradient(2px 2px at calc(random(100) * 1vw) calc(random(100) * 1vh), rgba(255, 255, 255, 0.1), transparent),
-                    radial-gradient(1px 1px at calc(random(100) * 1vw) calc(random(100) * 1vh), rgba(255, 255, 255, 0.1), transparent),
-                    radial-gradient(3px 3px at calc(random(100) * 1vw) calc(random(100) * 1vh), rgba(255, 255, 255, 0.05), transparent),
-                    radial-gradient(1px 1px at calc(random(100) * 1vw) calc(random(100) * 1vh), rgba(255, 255, 255, 0.05), transparent);
+  background-image: radial-gradient(2px 2px at 20vw 20vh, rgba(255, 255, 255, 0.1), transparent),
+                    radial-gradient(1px 1px at 40vw 40vh, rgba(255, 255, 255, 0.1), transparent),
+                    radial-gradient(3px 3px at 60vw 60vh, rgba(255, 255, 255, 0.05), transparent),
+                    radial-gradient(1px 1px at 80vw 80vh, rgba(255, 255, 255, 0.05), transparent),
+                    radial-gradient(2px 2px at 10vw 70vh, rgba(255, 255, 255, 0.1), transparent),
+                    radial-gradient(1px 1px at 30vw 90vh, rgba(255, 255, 255, 0.1), transparent),
+                    radial-gradient(3px 3px at 50vw 10vh, rgba(255, 255, 255, 0.05), transparent),
+                    radial-gradient(1px 1px at 70vw 30vh, rgba(255, 255, 255, 0.05), transparent);
   background-size: 500px 500px;
   pointer-events: none;
 }
@@ -292,4 +296,67 @@ html {
   transition: width 0.2s, height 0.2s, background-color 0.2s;
   z-index: 1000;
   mix-blend-mode: difference;
+}
+
+/* Enhanced image styles for visual interest */
+.section-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+  filter: blur(4px);
+  transition: all 0.5s ease;
+}
+
+.section-image:hover {
+  opacity: 0.3;
+  filter: blur(2px);
+}
+
+/* Image card hover effects */
+.image-card {
+  overflow: hidden;
+  position: relative;
+  border-radius: 0.5rem;
+}
+
+.image-card img {
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.image-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Image overlay for text legibility */
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.image-card:hover .image-overlay {
+  opacity: 1;
+}
+
+/* Pulsing effect for background images */
+@keyframes pulse-subtle {
+  0% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0.05;
+  }
+}
+
+.bg-pulse {
+  animation: pulse-subtle 8s infinite ease-in-out;
 }
