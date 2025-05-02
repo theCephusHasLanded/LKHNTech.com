@@ -91,7 +91,7 @@ const ContactForm = () => {
                      formData.email && 
                      formData.message;
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Mark all fields as touched for validation
@@ -105,12 +105,18 @@ const ContactForm = () => {
     if (isFormValid) {
       setFormStatus('submitting');
       
-      // Simulate API submission
-      setTimeout(() => {
-        console.log("Form data to be sent to API:", formData);
+      try {
+        const response = await fetch('/api/sendEmail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
         
-        // 95% chance of success
-        if (Math.random() > 0.05) {
+        const data = await response.json();
+        
+        if (data.success) {
           setFormStatus('success');
           
           // Reset form after success
@@ -127,12 +133,19 @@ const ContactForm = () => {
           // Reset success message after delay
           setTimeout(() => setFormStatus('idle'), 5000);
         } else {
+          console.error('Form submission error:', data.message);
           setFormStatus('error');
           
           // Reset error message after delay
           setTimeout(() => setFormStatus('idle'), 5000);
         }
-      }, 1500);
+      } catch (error) {
+        console.error('Form submission error:', error);
+        setFormStatus('error');
+        
+        // Reset error message after delay
+        setTimeout(() => setFormStatus('idle'), 5000);
+      }
     }
   };
   

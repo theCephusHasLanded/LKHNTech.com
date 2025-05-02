@@ -5,7 +5,10 @@
       "WebFetch(domain:dribbble.com)",
       "WebFetch(domain:www.behance.net)",
       "WebFetch(domain:uxplanet.org)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }
