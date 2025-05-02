@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.awwwards.com)",
+      "WebFetch(domain:dribbble.com)",
+      "WebFetch(domain:www.behance.net)",
+      "WebFetch(domain:uxplanet.org)",
+      "Bash(git init:*)"
+    ],
+    "deny": []
+  }
+}

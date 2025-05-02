@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #0a0a0a;
+  --color-secondary: #1a1a1a;
+  --color-accent: #3a3a3a;
+  --color-text-primary: #f7f1e6;
+  --color-text-secondary: #a0a0a0;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Space Grotesk', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+}
+
+/* Star constellation background */
+.stars-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: radial-gradient(2px 2px at calc(random(100) * 1vw) calc(random(100) * 1vh), rgba(255, 255, 255, 0.1), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1vw) calc(random(100) * 1vh), rgba(255, 255, 255, 0.1), transparent),
+                    radial-gradient(3px 3px at calc(random(100) * 1vw) calc(random(100) * 1vh), rgba(255, 255, 255, 0.05), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1vw) calc(random(100) * 1vh), rgba(255, 255, 255, 0.05), transparent);
+  background-size: 500px 500px;
+  pointer-events: none;
+}
+
+/* Constellation lines */
+.constellation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Modern scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Glassmorphism cards */
+.glass-card {
+  background: rgba(26, 26, 26, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Terminal text animation */
+.typing-animation h1 {
+  overflow: hidden;
+  border-right: 0.15em solid var(--color-text-primary);
+  white-space: normal;
+  margin: 0 auto;
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--color-text-primary) }
+}
+
+/* Animated background with grid */
+.code-background {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                   linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: slide 20s linear infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(20px);
+  }
+}
+
+/* Text glitch effect */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -1px 0 rgba(255, 0, 0, 0.3);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -1px 0 rgba(0, 0, 255, 0.3);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(19px, 9999px, 32px, 0); }
+  5% { clip: rect(72px, 9999px, 69px, 0); }
+  10% { clip: rect(17px, 9999px, 79px, 0); }
+  15% { clip: rect(76px, 9999px, 56px, 0); }
+  20% { clip: rect(56px, 9999px, 78px, 0); }
+  25% { clip: rect(48px, 9999px, 9px, 0); }
+  30% { clip: rect(44px, 9999px, 97px, 0); }
+  35% { clip: rect(11px, 9999px, 39px, 0); }
+  40% { clip: rect(27px, 9999px, 12px, 0); }
+  45% { clip: rect(14px, 9999px, 97px, 0); }
+  50% { clip: rect(81px, 9999px, 75px, 0); }
+  55% { clip: rect(36px, 9999px, 87px, 0); }
+  60% { clip: rect(95px, 9999px, 5px, 0); }
+  65% { clip: rect(82px, 9999px, 12px, 0); }
+  70% { clip: rect(1px, 9999px, 34px, 0); }
+  75% { clip: rect(81px, 9999px, 90px, 0); }
+  80% { clip: rect(8px, 9999px, 98px, 0); }
+  85% { clip: rect(99px, 9999px, 16px, 0); }
+  90% { clip: rect(20px, 9999px, 85px, 0); }
+  95% { clip: rect(5px, 9999px, 23px, 0); }
+  100% { clip: rect(5px, 9999px, 41px, 0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(65px, 9999px, 12px, 0); }
+  5% { clip: rect(62px, 9999px, 73px, 0); }
+  10% { clip: rect(21px, 9999px, 82px, 0); }
+  15% { clip: rect(5px, 9999px, 66px, 0); }
+  20% { clip: rect(6px, 9999px, 21px, 0); }
+  25% { clip: rect(55px, 9999px, 7px, 0); }
+  30% { clip: rect(82px, 9999px, 31px, 0); }
+  35% { clip: rect(41px, 9999px, 11px, 0); }
+  40% { clip: rect(9px, 9999px, 77px, 0); }
+  45% { clip: rect(57px, 9999px, 62px, 0); }
+  50% { clip: rect(23px, 9999px, 78px, 0); }
+  55% { clip: rect(26px, 9999px, 87px, 0); }
+  60% { clip: rect(75px, 9999px, 52px, 0); }
+  65% { clip: rect(9px, 9999px, 41px, 0); }
+  70% { clip: rect(29px, 9999px, 3px, 0); }
+  75% { clip: rect(24px, 9999px, 16px, 0); }
+  80% { clip: rect(93px, 9999px, 8px, 0); }
+  85% { clip: rect(59px, 9999px, 23px, 0); }
+  90% { clip: rect(93px, 9999px, 5px, 0); }
+  95% { clip: rect(2px, 9999px, 13px, 0); }
+  100% { clip: rect(53px, 9999px, 14px, 0); }
+}
+
+/* Parallax effect */
+.parallax {
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+/* Button hover effects */
+.button-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.button-hover:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+
+.button-hover:hover:after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* 3D Card effect */
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.card-3d-inner {
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover .card-3d-inner {
+  transform: rotateY(10deg) rotateX(5deg);
+}
+
+/* Custom cursor */
+.custom-cursor {
+  pointer-events: none;
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  z-index: 1000;
+  mix-blend-mode: difference;
+}
