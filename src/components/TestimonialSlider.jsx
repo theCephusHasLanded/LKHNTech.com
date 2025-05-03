@@ -6,25 +6,25 @@ const testimonials = [
     quote: "LKHN Technologies transformed our workflow with their human-centered AI solution. Our team now accomplishes in hours what used to take days.",
     author: "Sarah Johnson",
     position: "CTO, FinTech Innovations",
-    image: null // Would normally contain the image path
+    image: "https://this-person-does-not-exist.com/img/avatar-gen116b0cd9f6608117a0e86b27e034777a.jpg" // AI-generated avatar
   },
   {
     quote: "Their minimalist design approach completely revitalized our healthcare platform. Patient satisfaction scores increased by 40% within three months.",
     author: "Dr. Michael Chen",
     position: "Director, MedCare Solutions",
-    image: null
+    image: "https://this-person-does-not-exist.com/img/avatar-gen11df9d8b2c130853d2e0f913edd9f562.jpg"
   },
   {
     quote: "Working with LKHN was refreshing. They truly understood our human needs first, then built technology around those needs rather than forcing us to adapt to technology.",
     author: "Aisha Rahman",
     position: "Operations Manager, Global Education",
-    image: null
+    image: "https://this-person-does-not-exist.com/img/avatar-gen11e6d1f77e4cfb06a902cb8f0d56e160.jpg"
   },
   {
     quote: "Their work-life balance solutions have transformed our company culture. Employee burnout is down, productivity is up, and people actually enjoy using our systems.",
     author: "Robert Keller",
     position: "HR Director, Enterprise Solutions",
-    image: null
+    image: "https://this-person-does-not-exist.com/img/avatar-gen112423c7d3df15dc86daea3e650f4d12.jpg"
   }
 ];
 
@@ -134,7 +134,7 @@ const TestimonialSlider = ({ logoImage }) => {
           
           <div className="flex flex-col items-center">
             {testimonials[currentIndex].image ? (
-              <div className="w-16 h-16 rounded-full bg-gray-700 mb-3 overflow-hidden">
+              <div className="w-20 h-20 rounded-full bg-gray-700 mb-4 overflow-hidden border-2 border-gray-600 shadow-lg transform transition-all duration-300 hover:scale-105">
                 <img 
                   src={testimonials[currentIndex].image} 
                   alt={testimonials[currentIndex].author} 
@@ -142,23 +142,23 @@ const TestimonialSlider = ({ logoImage }) => {
                 />
               </div>
             ) : logoImage ? (
-              <div className="w-16 h-16 rounded-full bg-gray-700 mb-3 flex items-center justify-center overflow-hidden">
+              <div className="w-20 h-20 rounded-full bg-gray-700 mb-4 flex items-center justify-center overflow-hidden border-2 border-gray-600">
                 <img 
                   src={logoImage} 
                   alt="LKHN Technologies" 
-                  className="w-10 h-10 object-contain opacity-50"
+                  className="w-12 h-12 object-contain opacity-50"
                 />
               </div>
             ) : (
-              <div className="w-16 h-16 rounded-full bg-gray-700 mb-3 flex items-center justify-center">
-                <span className="text-xl font-bold text-gray-400">
+              <div className="w-20 h-20 rounded-full bg-gray-700 mb-4 flex items-center justify-center border-2 border-gray-600">
+                <span className="text-2xl font-bold text-gray-400">
                   {testimonials[currentIndex].author.charAt(0)}
                 </span>
               </div>
             )}
             
             <div className="text-center">
-              <p className="font-bold">{testimonials[currentIndex].author}</p>
+              <p className="font-bold text-lg">{testimonials[currentIndex].author}</p>
               <p className="text-gray-400 text-sm">{testimonials[currentIndex].position}</p>
             </div>
           </div>
