@@ -23,6 +23,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
   const [darkMode, setDarkMode] = useState(true);
   const [scrollY, setScrollY] = useState(0);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [heroBackground, setHeroBackground] = useState(1);
   const constellationRef = useRef(null);
   
   // Form handling moved to ContactForm component
@@ -44,6 +45,9 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
           }
         }, 100);
       }
+      
+      // Set random celestial background between 1-5
+      setHeroBackground(Math.floor(Math.random() * 5) + 1);
     };
     
     sequence();
@@ -185,11 +189,17 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
           
           {/* Hero Section - Enhanced with parallax effects */}
           <section id="home" className={`min-h-screen flex items-center pt-20 relative ${activeSection === 'home' ? 'block' : 'block'}`}>
-            {/* Added hero background image from Unsplash */}
+            {/* Dynamic celestial background image that changes on each visit */}
             <div className="absolute inset-0 overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1623824204241-f851d3bcfaf5?auto=format&fit=crop&q=80" 
-                alt="Digital interface" 
+                src={
+                  heroBackground === 1 ? "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80" : 
+                  heroBackground === 2 ? "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&q=80" : 
+                  heroBackground === 3 ? "https://images.unsplash.com/photo-1534628526458-a8de087b1123?auto=format&fit=crop&q=80" :
+                  heroBackground === 4 ? "https://images.unsplash.com/photo-1540198163009-7afda7da2945?auto=format&fit=crop&q=80" :
+                  "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&q=80"
+                }
+                alt="Celestial background" 
                 className="section-image bg-pulse"
               />
             </div>
@@ -303,7 +313,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   title="Minimalist Interface Design"
                   description="Clean, intuitive digital experiences that reduce cognitive load and enhance user focus."
                   features={["UX/UI Design", "User Research", "Responsive Interfaces", "Design Systems"]}
-                  imageUrl="https://images.unsplash.com/photo-1725764819627-9fcda8350344?auto=format&fit=crop&q=80"
+                  imageUrl="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&q=80"
                 />
                 
                 <ServiceCard 
@@ -737,13 +747,13 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                     Creating digital interfaces that optimize the human experience through minimalist design and intelligent automation in the post-AI era.
                   </p>
                   <div className="flex space-x-4">
-                    <a href="#" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
+                    <a href="https://www.linkedin.com/in/thecephus" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                     </a>
-                    <a href="#" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
+                    <a href="https://twitter.com/LKHNTech" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
                     </a>
-                    <a href="#" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
+                    <a href="https://github.com/TheCephusHasLanded" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                     </a>
                   </div>
@@ -776,13 +786,13 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                       <Home size={14} />
                       <span>The Bronx, New York</span>
                     </p>
-                    <button 
-                      onClick={() => navigateToSection('contact')}
+                    <a 
+                      href="mailto:christinacephus@pursuit.org" 
                       className="px-4 py-2 mt-3 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-md transition-all flex items-center space-x-2 text-sm button-hover"
                     >
                       <span>Get In Touch</span>
                       <Send size={12} />
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -794,6 +804,14 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                     alt="LKHN Technologies Logo" 
                     className="h-8 w-auto"
                   />
+                </div>
+                <div className="flex justify-center space-x-4 mb-4">
+                  <a href="https://www.linkedin.com/in/thecephus" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                  </a>
+                  <a href="https://github.com/TheCephusHasLanded" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  </a>
                 </div>
                 <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} LKHN Technologies. All rights reserved.</p>
                 <p className="text-gray-600 text-xs mt-2">Creating digital interfaces that optimize the human experience.</p>
