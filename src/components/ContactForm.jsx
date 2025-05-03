@@ -44,8 +44,8 @@ const ContactForm = () => {
     } else {
       // Handle text inputs - map EmailJS field names to our state
       let stateKey = name;
-      if (name === 'from_name') stateKey = 'name';
-      if (name === 'from_email') stateKey = 'email';
+      if (name === 'user_name') stateKey = 'name';
+      if (name === 'user_email') stateKey = 'email';
       
       setFormData(prev => ({
         ...prev,
@@ -55,8 +55,8 @@ const ContactForm = () => {
     
     // Mark field as touched - map EmailJS field names to our state for validation
     let touchedKey = name;
-    if (name === 'from_name') touchedKey = 'name';
-    if (name === 'from_email') touchedKey = 'email';
+    if (name === 'user_name') touchedKey = 'name';
+    if (name === 'user_email') touchedKey = 'email';
     
     setTouched(prev => ({
       ...prev,
@@ -70,8 +70,8 @@ const ContactForm = () => {
     
     // Map EmailJS field names to our state for validation
     let touchedKey = name;
-    if (name === 'from_name') touchedKey = 'name';
-    if (name === 'from_email') touchedKey = 'email';
+    if (name === 'user_name') touchedKey = 'name';
+    if (name === 'user_email') touchedKey = 'email';
     
     setTouched(prev => ({
       ...prev,
@@ -226,7 +226,7 @@ const ContactForm = () => {
           <input 
             type="text" 
             id="name" 
-            name="from_name"  // Updated for EmailJS
+            name="user_name"  // Updated for default EmailJS template
             value={formData.name}
             onChange={handleFormChange}
             onBlur={handleBlur}
@@ -247,7 +247,7 @@ const ContactForm = () => {
           <input 
             type="email" 
             id="email" 
-            name="from_email"  // Updated for EmailJS
+            name="user_email"  // Updated for default EmailJS template
             value={formData.email}
             onChange={handleFormChange}
             onBlur={handleBlur}
@@ -296,7 +296,7 @@ const ContactForm = () => {
           {/* Hidden field for services */}
           <input 
             type="hidden" 
-            name="services" 
+            name="services_requested" 
             value={formData.services.join(', ')}
           />
           {touched.message && errors.message && (
