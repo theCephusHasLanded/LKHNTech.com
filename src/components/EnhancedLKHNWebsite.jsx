@@ -266,45 +266,59 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                 <div className="flex flex-wrap justify-center items-center gap-8 opacity-80">
                   {/* Forward-thinking tech company logos */}
                   <a href="https://www.buymeacoffee.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
-                    <img 
-                      src="https://cdn.buymeacoffee.com/uploads/project_updates/2021/11/dfc3ebbe88da708ab7e7c0218fdc912a.png" 
-                      alt="Buy Me A Coffee" 
+                    <img
+                      src="https://www.svgrepo.com/show/330105/buymeacoffee.svg"
+                      alt="Buy Me A Coffee"
                       className="h-8 object-contain filter invert"
                     />
                   </a>
                   <a href="https://substack.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
-                    <img 
-                      src="https://substack.com/img/substack.png" 
-                      alt="Substack" 
-                      className="h-8 object-contain filter invert" 
+                    <img
+                      src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/substack-guy6qbae0ljujje81x17z.png/substack-vqr21ymrh8qc5uspndxk9.png?_a=DATAdtAAZAA0"
+                      alt="Substack"
+                      className="h-8 object-contain filter invert"
                     />
                   </a>
-                  <a href="https://www.notion.so" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
-                    <img 
-                      src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" 
-                      alt="Notion" 
-                      className="h-8 object-contain filter invert" 
+                  <a href="https://medium.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img
+                      src="https://www.svgrepo.com/show/354057/medium-icon.svg"
+                      alt="Medium"
+                      className="h-8 object-contain filter invert"
                     />
                   </a>
-                  <a href="https://www.toasttab.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
-                    <img 
-                      src="https://1000logos.net/wp-content/uploads/2022/09/Toast-Logo-png.png" 
-                      alt="Toast" 
-                      className="h-8 object-contain filter invert" 
+                  <a href="https://www.notion.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png"
+                      alt="Notion"
+                      className="h-8 object-contain filter invert"
                     />
                   </a>
-                  <a href="https://www.anthropic.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
-                    <img 
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Anthropic_Logo.svg/2560px-Anthropic_Logo.svg.png" 
-                      alt="Anthropic" 
-                      className="h-8 object-contain filter invert" 
+                  <a href="https://www.opentable.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img
+                      src="https://www.svgrepo.com/show/443304/brand-opentable.svg"
+                      alt="Toast"
+                      className="h-8 object-contain filter invert"
                     />
                   </a>
                   <a href="https://www.pursuit.org" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
-                    <img 
-                      src="https://pursuit.org/assets/images/logo-blue.png" 
-                      alt="Pursuit.org" 
-                      className="h-8 object-contain filter invert" 
+                    <img
+                      src="https://logosandtypes.com/wp-content/uploads/2024/06/pursuit.svg"
+                      alt="Pursuit.org"
+                      className="h-8 object-contain filter invert"
+                    />
+                  </a>
+                  <a href="https://www.anthropic.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img
+                      src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/light/claude.png"
+                      alt="Anthropic"
+                      className="h-8 object-contain filter invert"
+                    />
+                  </a>
+                  <a href="https://www.openai.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img
+                      src="https://logosandtypes.com/wp-content/uploads/2022/07/openai.svg"
+                      alt="OpenAI"
+                      className="h-8 object-contain filter invert"
                     />
                   </a>
                 </div>
