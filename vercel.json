@@ -1,11 +1,15 @@
 {
-  "functions": {
-    "api/sendEmail.js": {
-      "memory": 1024,
-      "maxDuration": 10
+  "version": 2,
+  "builds": [
+    { 
+      "src": "package.json", 
+      "use": "@vercel/static-build"
     }
-  },
-  "env": {
-    "EMAIL_PASSWORD": "@email_password"
-  }
+  ],
+  "routes": [
+    { 
+      "src": "/(.*)", 
+      "dest": "/index.html" 
+    }
+  ]
 }
