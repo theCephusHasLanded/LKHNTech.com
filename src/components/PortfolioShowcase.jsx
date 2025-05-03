@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronRight, ExternalLink, BarChart2, Heart, Landmark, Clock } from 'lucide-react';
 import ThreeDCard from './ThreeDCard';
 
 // Simulated portfolio projects
@@ -9,28 +9,36 @@ const portfolioProjects = [
     category: "Interface Design",
     description: "A minimalist financial analytics dashboard that reduced cognitive load while increasing data comprehension.",
     tags: ["React", "D3.js", "Minimal UI", "Data Visualization"],
-    link: "#"
+    link: "#",
+    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80",
+    icon: "BarChart2"
   },
   {
     title: "Healthcare AI Assistant",
     category: "AI Automation",
     description: "A natural language processing system that helps medical staff access patient information with minimal screen time.",
     tags: ["Python", "NLP", "Voice Interface", "Healthcare"],
-    link: "#"
+    link: "#",
+    imageUrl: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80",
+    icon: "Heart"
   },
   {
     title: "Government Service Portal",
     category: "Digital Ecosystem",
     description: "A comprehensive citizen service platform that connects multiple government departments with an intuitive interface.",
     tags: ["Node.js", "React", "API Integration", "Accessibility"],
-    link: "#"
+    link: "#",
+    imageUrl: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80",
+    icon: "Landmark"
   },
   {
     title: "Hospitality Work-Life Platform",
     category: "Work-Life Balance",
     description: "Employee management system that optimizes scheduling while protecting staff mental health and free time.",
     tags: ["Vue.js", "Machine Learning", "Scheduling", "Wellness"],
-    link: "#"
+    link: "#",
+    imageUrl: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80",
+    icon: "Clock"
   }
 ];
 
@@ -68,21 +76,29 @@ const PortfolioShowcase = ({ logoImage }) => {
         {filteredProjects.map((project, index) => (
           <ThreeDCard key={index}>
             <div className="glass-card rounded-xl border border-gray-700 overflow-hidden h-full flex flex-col">
-              {/* Project image or logo placeholder */}
-              <div className="h-48 bg-gray-800 relative">
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+              {/* Project image with overlay */}
+              <div className="h-48 relative overflow-hidden">
+                <div className="absolute inset-0 w-full h-full">
                   <img 
-                    src={logoImage} 
-                    alt="LKHN Technologies Logo" 
-                    className="h-16 w-auto object-contain opacity-20"
+                    src={project.imageUrl} 
+                    alt={project.title}
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-gray-600 font-bold text-lg">{project.category}</span>
+                  <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900 bg-opacity-70 opacity-80"></div>
+                </div>
+                
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
+                  <div className="text-gray-400 mb-3 p-3 bg-gray-800 bg-opacity-60 rounded-full">
+                    {project.icon === "BarChart2" && <BarChart2 size={30} />}
+                    {project.icon === "Heart" && <Heart size={30} />}
+                    {project.icon === "Landmark" && <Landmark size={30} />}
+                    {project.icon === "Clock" && <Clock size={30} />}
                   </div>
+                  <span className="text-gray-300 font-bold text-lg text-center">{project.category}</span>
                 </div>
                 
                 {/* Category badge */}
-                <div className="absolute top-4 left-4 bg-gray-900 bg-opacity-80 backdrop-blur-sm px-3 py-1 rounded-md text-xs flex items-center space-x-2">
+                <div className="absolute top-4 left-4 bg-gray-900 bg-opacity-80 backdrop-blur-sm px-3 py-1 rounded-md text-xs flex items-center space-x-2 glass-card">
                   <img 
                     src={logoImage} 
                     alt="LKHN" 
@@ -134,31 +150,48 @@ const PortfolioShowcase = ({ logoImage }) => {
                 
                 {/* Expanded case study content */}
                 <div className={`mt-4 overflow-hidden transition-all duration-300 ${
-                  expandedProject === index ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'
+                  expandedProject === index ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
                 }`}>
                   <div className="pt-4 border-t border-gray-700 mt-2">
-                    <div className="flex justify-center mb-4">
-                      <img 
-                        src={logoImage} 
-                        alt="LKHN Technologies Logo" 
-                        className="h-8 w-auto opacity-70"
-                      />
+                    <div className="flex items-center justify-center mb-4 space-x-3">
+                      <div className="p-2 bg-gray-800 rounded-full">
+                        {project.icon === "BarChart2" && <BarChart2 size={20} className="text-gray-400" />}
+                        {project.icon === "Heart" && <Heart size={20} className="text-gray-400" />}
+                        {project.icon === "Landmark" && <Landmark size={20} className="text-gray-400" />}
+                        {project.icon === "Clock" && <Clock size={20} className="text-gray-400" />}
+                      </div>
+                      <span className="text-gray-300 font-bold">{project.title}</span>
                     </div>
                     
-                    <h4 className="font-bold mb-2 text-sm">Challenge:</h4>
-                    <p className="text-gray-400 text-sm mb-3">
-                      Creating a system that balances technological efficiency with human needs and cognitive limitations.
-                    </p>
+                    <div className="glass-card p-4 rounded-md mb-3">
+                      <h4 className="font-bold mb-2 text-sm flex items-center">
+                        <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+                        Challenge:
+                      </h4>
+                      <p className="text-gray-400 text-sm">
+                        Creating a system that balances technological efficiency with human needs and cognitive limitations.
+                      </p>
+                    </div>
                     
-                    <h4 className="font-bold mb-2 text-sm">Solution:</h4>
-                    <p className="text-gray-400 text-sm mb-3">
-                      We implemented a human-centered design approach that prioritized intuitive interactions and minimized cognitive load.
-                    </p>
+                    <div className="glass-card p-4 rounded-md mb-3">
+                      <h4 className="font-bold mb-2 text-sm flex items-center">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        Solution:
+                      </h4>
+                      <p className="text-gray-400 text-sm">
+                        We implemented a human-centered design approach that prioritized intuitive interactions and minimized cognitive load.
+                      </p>
+                    </div>
                     
-                    <h4 className="font-bold mb-2 text-sm">Results:</h4>
-                    <p className="text-gray-400 text-sm">
-                      30% increase in user satisfaction, 45% reduction in training time, and 25% improvement in task completion rates.
-                    </p>
+                    <div className="glass-card p-4 rounded-md">
+                      <h4 className="font-bold mb-2 text-sm flex items-center">
+                        <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                        Results:
+                      </h4>
+                      <p className="text-gray-400 text-sm">
+                        30% increase in user satisfaction, 45% reduction in training time, and 25% improvement in task completion rates.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
