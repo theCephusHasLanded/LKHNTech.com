@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Loader, Terminal, Monitor, Database, Code, Users, Cpu, Server, 
-  BarChart2, BookOpen, Heart, Home, Globe, Briefcase, Award, 
-  ArrowRight, Send, CheckCircle, AlertCircle, Zap, Compass, 
+import {
+  Loader, Terminal, Monitor, Database, Code, Users, Cpu, Server,
+  BarChart2, BookOpen, Heart, Home, Globe, Briefcase, Award,
+  ArrowRight, Send, CheckCircle, AlertCircle, Zap, Compass,
   RefreshCw, Coffee, Moon, Sun
 } from 'lucide-react';
 import ParticleConstellation from './ParticleConstellation';
@@ -25,7 +25,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [heroBackground, setHeroBackground] = useState(1);
   const constellationRef = useRef(null);
-  
+
   // Form handling moved to ContactForm component
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
       // Additional loading steps could be added here
       await new Promise(resolve => setTimeout(resolve, 1000)); // Final delay
       setLoading(false);
-      
+
       // After loading, scroll to the initial section if not home
       if (initialSection !== 'home') {
         setTimeout(() => {
@@ -45,22 +45,22 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
           }
         }, 100);
       }
-      
+
       // Set random celestial background between 1-5
       setHeroBackground(Math.floor(Math.random() * 5) + 1);
     };
-    
+
     sequence();
-    
+
     // Scroll event listener for parallax effects
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    
+
     // Mouse movement listener for custom cursor and constellation effect
     const handleMouseMove = (e) => {
       setCursorPosition({ x: e.clientX, y: e.clientY });
-      
+
       // Subtle constellation movement
       if (constellationRef.current) {
         const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
@@ -68,10 +68,10 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
         constellationRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`;
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('mousemove', handleMouseMove);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
@@ -99,12 +99,12 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
         {/* Enhanced loading animation */}
         <div className="stars-bg"></div>
         <div className="constellation" ref={constellationRef}></div>
-        
+
         <div className="text-center z-10 glass-card p-10 rounded-xl">
           <div className="flex flex-col items-center justify-center mb-6">
-            <img 
-              src={logoImage} 
-              alt="LKHN Technologies Logo" 
+            <img
+              src={logoImage}
+              alt="LKHN Technologies Logo"
               className="w-24 h-24 object-contain mb-6 animate-pulse-slow"
             />
             <div className="relative">
@@ -113,13 +113,13 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
               </div>
             </div>
           </div>
-          
+
           <div className="font-mono text-xl text-gray-300 glitch" data-text="LKHN Tech">
             <span className="text-gray-400">LKHN</span>
             <span className="text-gray-300">Tech</span>
             <span className="animate-pulse">_</span>
           </div>
-          
+
           <div className="text-xs text-gray-500 mt-3">
             <span className="typing-animation block w-full">
               Initializing Human-Centered Interface
@@ -142,15 +142,15 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
           <div className="constellation" ref={constellationRef}></div>
           <ParticleConstellation />
           <CursorTracker position={cursorPosition} />
-          
+
           {/* Header */}
           <header className="fixed w-full top-0 z-50 glass-card">
             <div className="container mx-auto px-4">
               <nav className="flex justify-between items-center py-4">
                 <div className="flex items-center group">
-                  <img 
-                    src={logoImage} 
-                    alt="LKHN Technologies Logo" 
+                  <img
+                    src={logoImage}
+                    alt="LKHN Technologies Logo"
                     className="h-8 w-auto mr-3"
                   />
                   <div className="text-xl font-bold">
@@ -159,23 +159,23 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                     <span className="animate-pulse">_</span>
                   </div>
                 </div>
-                
-                <NavigationMenu 
-                  activeSection={activeSection} 
+
+                <NavigationMenu
+                  activeSection={activeSection}
                   setActiveSection={navigateToSection}
                   logoImage={logoImage}
                 />
-                
+
                 <div className="flex items-center space-x-4">
-                  <button 
-                    onClick={toggleDarkMode} 
+                  <button
+                    onClick={toggleDarkMode}
                     className="text-gray-400 hover:text-gray-200 transition-all p-2 rounded-full hover:bg-gray-800"
                     aria-label="Toggle dark/light mode"
                   >
                     {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                   </button>
-                  
-                  <button 
+
+                  <button
                     onClick={() => navigateToSection('contact')}
                     className="hidden md:flex items-center space-x-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-md transition-all button-hover"
                   >
@@ -186,28 +186,28 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
               </nav>
             </div>
           </header>
-          
+
           {/* Hero Section - Enhanced with parallax effects */}
           <section id="home" className={`min-h-screen flex items-center pt-20 relative ${activeSection === 'home' ? 'block' : 'block'}`}>
             {/* Dynamic celestial background image that changes on each visit */}
             <div className="absolute inset-0 overflow-hidden">
-              <img 
+              <img
                 src={
-                  heroBackground === 1 ? "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80" : 
-                  heroBackground === 2 ? "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&q=80" : 
+                  heroBackground === 1 ? "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80" :
+                  heroBackground === 2 ? "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&q=80" :
                   heroBackground === 3 ? "https://images.unsplash.com/photo-1534628526458-a8de087b1123?auto=format&fit=crop&q=80" :
                   heroBackground === 4 ? "https://images.unsplash.com/photo-1540198163009-7afda7da2945?auto=format&fit=crop&q=80" :
                   "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&q=80"
                 }
-                alt="Celestial background" 
+                alt="Celestial background"
                 className="section-image bg-pulse"
               />
             </div>
-            
+
             <Parallax speed={-0.5} className="absolute top-20 right-10 opacity-20 hidden md:block">
               <div className="text-[120px] font-bold text-gray-700">LKHN</div>
             </Parallax>
-            
+
             <div className="container mx-auto px-4 relative z-10">
               <div className="glass-card gradient-border rounded-xl p-8 border border-gray-700 shadow-lg transform transition-all duration-500">
                 <div className="flex items-center justify-between mb-4">
@@ -218,37 +218,37 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   </div>
                   <div className="text-xs text-gray-500">LKHN_Terminal</div>
                 </div>
-                
+
                 <div className="terminal-content">
                   <div className="flex mb-6 items-start">
                     <span className="text-gray-500 mr-2 mt-1">$</span>
                     <div className="typing-animation w-full">
                       <h1 className="text-3xl md:text-5xl mb-6 font-bold leading-tight">
-                        Creating Digital Interfaces That 
+                        Creating Digital Interfaces That
                         <span className="block text-gray-400 mt-2">Optimize The Human Experience</span>
                       </h1>
                     </div>
                   </div>
-                  
+
                   <div className="flex mb-8">
                     <span className="text-gray-500 mr-2">$</span>
                     <p className="text-gray-300 max-w-2xl text-lg">
                       In a post-AI world, we remain fundamentally human-focused. LKHN Technologies delivers minimalist solutions that enhance how people interact with technology.
                     </p>
                   </div>
-                  
+
                   <div className="flex">
                     <span className="text-gray-500 mr-2">$</span>
                     <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                      <button 
+                      <button
                         onClick={() => navigateToSection('contact')}
                         className="px-6 py-3 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-md transition-all flex items-center space-x-2 button-hover"
                       >
                         <span>Get Started</span>
                         <ArrowRight size={16} />
                       </button>
-                      
-                      <button 
+
+                      <button
                         onClick={() => navigateToSection('services')}
                         className="px-6 py-3 bg-transparent hover:bg-gray-800 border border-gray-700 rounded-md transition-all flex items-center space-x-2"
                       >
@@ -259,27 +259,65 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Enhanced client logo section */}
               <div className="mt-20 glass-card rounded-xl p-6 border border-gray-700">
                 <p className="text-gray-400 text-center mb-6 text-sm">Trusted by forward-thinking organizations</p>
-                <div className="flex flex-wrap justify-center items-center gap-8 opacity-70">
-                  {/* Company logos would go here in a real implementation */}
-                  <div className="h-8 w-32 bg-gray-700 rounded-md animate-pulse"></div>
-                  <div className="h-8 w-24 bg-gray-700 rounded-md animate-pulse"></div>
-                  <div className="h-8 w-28 bg-gray-700 rounded-md animate-pulse"></div>
-                  <div className="h-8 w-20 bg-gray-700 rounded-md animate-pulse"></div>
+                <div className="flex flex-wrap justify-center items-center gap-8 opacity-80">
+                  {/* Forward-thinking tech company logos */}
+                  <a href="https://www.buymeacoffee.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img 
+                      src="https://cdn.buymeacoffee.com/uploads/project_updates/2021/11/dfc3ebbe88da708ab7e7c0218fdc912a.png" 
+                      alt="Buy Me A Coffee" 
+                      className="h-8 object-contain filter invert"
+                    />
+                  </a>
+                  <a href="https://substack.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img 
+                      src="https://substack.com/img/substack.png" 
+                      alt="Substack" 
+                      className="h-8 object-contain filter invert" 
+                    />
+                  </a>
+                  <a href="https://www.notion.so" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img 
+                      src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" 
+                      alt="Notion" 
+                      className="h-8 object-contain filter invert" 
+                    />
+                  </a>
+                  <a href="https://www.toasttab.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img 
+                      src="https://1000logos.net/wp-content/uploads/2022/09/Toast-Logo-png.png" 
+                      alt="Toast" 
+                      className="h-8 object-contain filter invert" 
+                    />
+                  </a>
+                  <a href="https://www.anthropic.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img 
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Anthropic_Logo.svg/2560px-Anthropic_Logo.svg.png" 
+                      alt="Anthropic" 
+                      className="h-8 object-contain filter invert" 
+                    />
+                  </a>
+                  <a href="https://www.pursuit.org" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img 
+                      src="https://pursuit.org/assets/images/logo-blue.png" 
+                      alt="Pursuit.org" 
+                      className="h-8 object-contain filter invert" 
+                    />
+                  </a>
                 </div>
               </div>
             </div>
           </section>
-          
+
           {/* Services Section - Enhanced with 3D cards */}
           <section id="services" className={`min-h-screen py-20 relative ${activeSection === 'services' ? 'block' : 'block'}`}>
             <Parallax speed={-0.2} className="absolute top-40 left-10 opacity-10 hidden md:block">
               <div className="text-[150px] font-bold text-gray-700 rotate-90">NYC</div>
             </Parallax>
-            
+
             <div className="container mx-auto px-4 relative z-10">
               <div className="text-center mb-16">
                 <div className="inline-block mb-3 p-4 rounded-full bg-gray-800 bg-opacity-50">
@@ -290,49 +328,49 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   Simplifying complex technology with a human-centered approach that prioritizes intuitive design and sustainable digital practices.
                 </p>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <ServiceCard 
+                <ServiceCard
                   icon={<Cpu size={30} />}
                   title="AI Automation"
                   description="Custom workflow solutions that streamline operations while maintaining the human touch."
                   features={["Process Optimization", "Workflow Automation", "AI Integration", "Custom Solutions"]}
                   imageUrl="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80"
                 />
-                
-                <ServiceCard 
+
+                <ServiceCard
                   icon={<Server size={30} />}
                   title="Technology Consulting"
                   description="Strategic guidance for digital transformation with a focus on simplicity."
                   features={["Digital Strategy", "System Architecture", "Technology Roadmaps", "Implementation Planning"]}
                   imageUrl="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80"
                 />
-                
-                <ServiceCard 
+
+                <ServiceCard
                   icon={<Monitor size={30} />}
                   title="Minimalist Interface Design"
                   description="Clean, intuitive digital experiences that reduce cognitive load and enhance user focus."
                   features={["UX/UI Design", "User Research", "Responsive Interfaces", "Design Systems"]}
                   imageUrl="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&q=80"
                 />
-                
-                <ServiceCard 
+
+                <ServiceCard
                   icon={<Heart size={30} />}
                   title="Work-Life Balance Solutions"
                   description="Technology that respects human wellbeing and prevents digital burnout."
                   features={["Digital Wellbeing", "Focused Productivity", "Notification Management", "Context Awareness"]}
                   imageUrl="https://images.unsplash.com/photo-1648912795679-a4d06075c860?auto=format&fit=crop&q=80"
                 />
-                
-                <ServiceCard 
+
+                <ServiceCard
                   icon={<Globe size={30} />}
                   title="Digital Ecosystem Development"
                   description="Comprehensive digital environments that connect business operations with customer experiences."
                   features={["Platform Integration", "API Development", "Microservices", "Scalable Architecture"]}
                   imageUrl="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80"
                 />
-                
-                <ServiceCard 
+
+                <ServiceCard
                   icon={<Zap size={30} />}
                   title="Performance Optimization"
                   description="Fine-tuning digital assets for maximum speed, efficiency and user satisfaction."
@@ -340,9 +378,9 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   imageUrl="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80"
                 />
               </div>
-              
+
               <div className="mt-16 text-center">
-                <button 
+                <button
                   onClick={() => navigateToSection('contact')}
                   className="px-8 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded-md transition-all inline-flex items-center space-x-2 button-hover"
                 >
@@ -352,18 +390,18 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
               </div>
             </div>
           </section>
-          
+
           {/* About Section - Enhanced with ThreeDCard */}
           <section id="about" className={`min-h-screen py-20 relative ${activeSection === 'about' ? 'block' : 'block'}`}>
             {/* Added about section background image */}
             <div className="absolute inset-0 overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?auto=format&fit=crop&q=80" 
-                alt="Modern tech workspace" 
+              <img
+                src="https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?auto=format&fit=crop&q=80"
+                alt="Modern tech workspace"
                 className="section-image bg-pulse"
               />
             </div>
-            
+
             <div className="container mx-auto px-4 relative z-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
@@ -386,7 +424,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                       <p className="text-gray-300">Through minimalist design and thoughtful automation, we create digital solutions that simplify complexity, optimize workflows, and foster a sustainable balance between technology and human wellbeing.</p>
                     </div>
                   </div>
-                  
+
                   <div className="mt-8">
                     <h3 className="text-2xl font-bold mb-4">Our Core Values</h3>
                     <div className="space-y-4">
@@ -408,32 +446,32 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                     </div>
                   </div>
                 </div>
-                
+
                 <ThreeDCard className="h-full">
                   <div className="glass-card rounded-xl p-8 border border-gray-700 shadow-lg h-full flex flex-col justify-center relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
                       <div className="absolute top-0 left-0 w-full h-full code-background"></div>
                     </div>
-                    
+
                     {/* Added team image */}
                     <div className="rounded-lg overflow-hidden mb-6 image-card">
-                      <img 
-                        src="https://plus.unsplash.com/premium_photo-1711051475003-ed54686c79e3?auto=format&fit=crop&q=80" 
-                        alt="Tech professional at work" 
+                      <img
+                        src="https://plus.unsplash.com/premium_photo-1711051475003-ed54686c79e3?auto=format&fit=crop&q=80"
+                        alt="Tech professional at work"
                         className="w-full h-48 object-cover"
                       />
                       <div className="image-overlay"></div>
                     </div>
-                    
+
                     <div className="text-center z-10 space-y-6">
-                      <img 
-                        src={logoImage} 
-                        alt="LKHN Technologies Logo" 
+                      <img
+                        src={logoImage}
+                        alt="LKHN Technologies Logo"
                         className="w-32 h-32 object-contain mx-auto mb-4"
                       />
                       <h3 className="text-3xl font-bold">LKHN Technologies</h3>
                       <p className="text-gray-400 mt-2">Human-Centered AI Solutions</p>
-                      
+
                       <div className="grid grid-cols-3 gap-4 mt-12">
                         {[
                           { number: "5+", label: "Years Experience" },
@@ -446,9 +484,9 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                           </div>
                         ))}
                       </div>
-                      
+
                       <div className="pt-8">
-                        <button 
+                        <button
                           onClick={() => navigateToSection('markets')}
                           className="px-6 py-2 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-md transition-all flex items-center space-x-2 mx-auto button-hover"
                         >
@@ -460,25 +498,25 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   </div>
                 </ThreeDCard>
               </div>
-              
+
               {/* Testimonials slider */}
               <div className="mt-24">
                 <TestimonialSlider logoImage={logoImage} />
               </div>
             </div>
           </section>
-          
+
           {/* Markets Section - Enhanced with portfolio showcase */}
           <section id="markets" className={`min-h-screen py-20 relative ${activeSection === 'markets' ? 'block' : 'block'}`}>
             {/* Added market background image */}
             <div className="absolute inset-0 overflow-hidden">
-              <img 
-                src="https://plus.unsplash.com/premium_photo-1682310178386-1d20be620733?auto=format&fit=crop&q=80" 
-                alt="Data visualization" 
+              <img
+                src="https://plus.unsplash.com/premium_photo-1682310178386-1d20be620733?auto=format&fit=crop&q=80"
+                alt="Data visualization"
                 className="section-image bg-pulse"
               />
             </div>
-            
+
             <div className="container mx-auto px-4 relative z-10">
               <div className="text-center mb-16">
                 <div className="inline-block mb-3 p-3 rounded-full bg-gray-800 bg-opacity-50">
@@ -489,7 +527,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   Bringing human-centered technology to diverse industries with solutions that adapt to specific needs while maintaining our core design philosophy.
                 </p>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[
                   {
@@ -535,14 +573,14 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                     imageUrl: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80"
                   }
                 ].map((market, index) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className="glass-card rounded-xl p-6 border border-gray-700 shadow-lg transform hover:translate-y-[-5px] hover:bg-opacity-30 transition-all duration-300"
                   >
                     {/* Added market card image */}
                     {market.imageUrl && (
                       <div className="w-full h-36 mb-4 overflow-hidden rounded-md image-card">
-                        <img 
+                        <img
                           src={market.imageUrl}
                           alt={market.title}
                           className="w-full h-full object-cover"
@@ -550,7 +588,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                         <div className="image-overlay"></div>
                       </div>
                     )}
-                  
+
                     <div className="text-gray-400 mb-4 p-3 bg-gray-800 rounded-md inline-block">
                       {market.icon}
                     </div>
@@ -563,14 +601,14 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   </div>
                 ))}
               </div>
-              
+
               {/* Portfolio section */}
               <div className="mt-20">
                 <h3 className="text-2xl font-bold mb-8 text-center">Featured Projects</h3>
                 <PortfolioShowcase logoImage={logoImage} />
-                
+
                 <div className="text-center mt-12">
-                  <button 
+                  <button
                     onClick={() => navigateToSection('contact')}
                     className="px-8 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded-md transition-all inline-flex items-center space-x-2 button-hover"
                   >
@@ -581,18 +619,18 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
               </div>
             </div>
           </section>
-          
+
           {/* Contact Section - Enhanced with interactive form */}
           <section id="contact" className={`min-h-screen py-20 relative ${activeSection === 'contact' ? 'block' : 'block'}`}>
             {/* Added network visualization background for contact section */}
             <div className="absolute inset-0 overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1664526937033-fe2c11f1be25?auto=format&fit=crop&q=80" 
-                alt="Network visualization" 
+              <img
+                src="https://images.unsplash.com/photo-1664526937033-fe2c11f1be25?auto=format&fit=crop&q=80"
+                alt="Network visualization"
                 className="section-image bg-pulse"
               />
             </div>
-            
+
             <div className="container mx-auto px-4 relative z-10">
               <div className="text-center mb-16">
                 <div className="inline-block mb-3 p-3 rounded-full bg-gray-800 bg-opacity-50">
@@ -603,13 +641,13 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   Ready to optimize your human experience? Let's discuss how we can help your organization thrive in the post-AI era.
                 </p>
               </div>
-              
+
               <div className="max-w-5xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
                   <div className="md:col-span-3">
                     <ContactForm />
                   </div>
-                  
+
                   <div className="md:col-span-2">
                     <div className="glass-card gradient-border rounded-xl p-6 border border-gray-700 shadow-lg h-full flex flex-col justify-between">
                       <div>
@@ -621,25 +659,25 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                           </div>
                           <div className="text-xs text-gray-500">contact.info</div>
                         </div>
-                        
+
                         {/* Enhanced contact card with additional imagery */}
                         <div className="rounded-lg overflow-hidden mb-6 image-card">
-                          <img 
-                            src="https://images.unsplash.com/photo-1647356191320-d7a1f80ca777?auto=format&fit=crop&q=80" 
-                            alt="Network visualization" 
+                          <img
+                            src="https://images.unsplash.com/photo-1647356191320-d7a1f80ca777?auto=format&fit=crop&q=80"
+                            alt="Network visualization"
                             className="w-full h-36 object-cover"
                           />
                           <div className="image-overlay"></div>
                         </div>
-                        
+
                         <div className="flex justify-center my-6">
-                          <img 
-                            src={logoImage} 
-                            alt="LKHN Technologies Logo" 
+                          <img
+                            src={logoImage}
+                            alt="LKHN Technologies Logo"
                             className="w-24 h-24 object-contain"
                           />
                         </div>
-                        
+
                         <div className="space-y-8">
                           <div className="flex items-start">
                             <div className="text-gray-400 mr-4 mt-1 p-2 bg-gray-800 rounded-md">
@@ -670,13 +708,13 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="mt-8 p-5 glass-card rounded-md">
                         <p className="text-lg text-gray-300 italic">
                           "In a post-AI world, we remain fundamentally human-focused."
                         </p>
                         <p className="text-sm text-gray-500 mt-3">- Christina Cephus, Founder</p>
-                        
+
                         <div className="flex space-x-3 mt-8">
                           <a href="#" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
@@ -693,7 +731,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   </div>
                 </div>
               </div>
-              
+
               {/* FAQ Section */}
               <div className="mt-20">
                 <h3 className="text-2xl font-bold mb-8 text-center">Frequently Asked Questions</h3>
@@ -725,16 +763,16 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
               </div>
             </div>
           </section>
-          
+
           {/* Footer */}
           <footer className="bg-gray-800 bg-opacity-30 backdrop-blur-md py-12 mt-12 border-t border-gray-800">
             <div className="container mx-auto px-4">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
                 <div className="md:col-span-2">
                   <div className="flex items-center mb-4">
-                    <img 
-                      src={logoImage} 
-                      alt="LKHN Technologies Logo" 
+                    <img
+                      src={logoImage}
+                      alt="LKHN Technologies Logo"
                       className="h-10 w-auto mr-3"
                     />
                     <div className="text-2xl font-bold inline-flex items-center">
@@ -750,7 +788,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                     <a href="https://www.linkedin.com/in/thecephus" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                     </a>
-                    <a href="https://www.instagram.com/cephusai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
+                    <a href="https://www.instagram.com/cephus.ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                     </a>
                     <a href="https://www.pinterest.com/LKHiTechNews" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
@@ -761,12 +799,12 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                     </a>
                   </div>
                 </div>
-                
+
                 <div>
                   <h4 className="text-gray-200 font-bold mb-4 text-lg">Quick Links</h4>
                   <div className="flex flex-col space-y-3">
                     {['home', 'services', 'about', 'markets', 'contact'].map((section) => (
-                      <button 
+                      <button
                         key={section}
                         onClick={() => navigateToSection(section)}
                         className="text-gray-400 hover:text-gray-200 text-sm text-left transition-all flex items-center space-x-2"
@@ -777,7 +815,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                     ))}
                   </div>
                 </div>
-                
+
                 <div>
                   <h4 className="text-gray-200 font-bold mb-4 text-lg">Contact</h4>
                   <div className="space-y-3">
@@ -789,8 +827,8 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                       <Home size={14} />
                       <span>The Bronx, New York</span>
                     </p>
-                    <a 
-                      href="mailto:christinacephus@pursuit.org" 
+                    <a
+                      href="mailto:christinacephus@pursuit.org"
                       className="px-4 py-2 mt-3 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-md transition-all flex items-center space-x-2 text-sm button-hover"
                     >
                       <span>Get In Touch</span>
@@ -799,12 +837,12 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="border-t border-gray-800 mt-10 pt-8 text-center">
                 <div className="flex justify-center mb-4">
-                  <img 
-                    src={logoImage} 
-                    alt="LKHN Technologies Logo" 
+                  <img
+                    src={logoImage}
+                    alt="LKHN Technologies Logo"
                     className="h-8 w-auto"
                   />
                 </div>
@@ -827,7 +865,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
               </div>
             </div>
           </footer>
-          
+
           {/* Enhanced Floating Navigation for Mobile */}
           <div className="md:hidden fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
             <div className="glass-card rounded-full px-4 py-2 border border-gray-700 shadow-lg">
@@ -839,10 +877,10 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   { section: 'markets', icon: <BarChart2 size={20} /> },
                   { section: 'contact', icon: <Terminal size={20} /> }
                 ].map((item) => (
-                  <button 
+                  <button
                     key={item.section}
                     onClick={() => navigateToSection(item.section)}
-                    className={`${activeSection === item.section ? 'text-gray-200' : 'text-gray-500'} 
+                    className={`${activeSection === item.section ? 'text-gray-200' : 'text-gray-500'}
                       hover:text-gray-200 transition-all p-2`}
                   >
                     {item.icon}
