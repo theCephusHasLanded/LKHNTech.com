@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Loader, CheckCircle, AlertCircle, Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_USER_ID, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from '../config/emailConfig';
 
 const ContactForm = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,29 +42,50 @@ const ContactForm = () => {
         };
       });
     } else {
-      // Handle text inputs
+      // Handle text inputs - map EmailJS field names to our state
+      let stateKey = name;
+      if (name === 'from_name') stateKey = 'name';
+      if (name === 'from_email') stateKey = 'email';
+      
       setFormData(prev => ({
         ...prev,
-        [name]: value
+        [stateKey]: value
       }));
     }
     
-    // Mark field as touched
+    // Mark field as touched - map EmailJS field names to our state for validation
+    let touchedKey = name;
+    if (name === 'from_name') touchedKey = 'name';
+    if (name === 'from_email') touchedKey = 'email';
+    
     setTouched(prev => ({
       ...prev,
-      [name]: true
+      [touchedKey]: true
     }));
   };
   
   // Handle blur events for validation
   const handleBlur = (e) => {
     const { name } = e.target;
+    
+    // Map EmailJS field names to our state for validation
+    let touchedKey = name;
+    if (name === 'from_name') touchedKey = 'name';
+    if (name === 'from_email') touchedKey = 'email';
+    
     setTouched(prev => ({
       ...prev,
-      [name]: true
+      [touchedKey]: true
     }));
   };
   
+  // Form validation
+  // Initialize EmailJS
+  useEffect(() => {
+    // Initialize EmailJS with your User ID
+    emailjs.init(EMAILJS_USER_ID);
+  }, []);
+
   // Form validation
   useEffect(() => {
     const newErrors = {};
@@ -106,51 +130,61 @@ const ContactForm = () => {
       setFormStatus('submitting');
       
       try {
-        const response = await fetch('/api/sendEmail', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
+        // Prepare template parameters
+        const templateParams = {
+          from_name: formData.name,
+          from_email: formData.email,
+          company: formData.company || 'Not provided',
+          message: formData.message,
+          services: formData.services.join(', ') || 'None selected'
+        };
+        
+        // Log for debugging
+        console.log('Sending email with:', templateParams);
+        
+        // Send email using EmailJS
+        const result = await emailjs.sendForm(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          form.current,
+          EMAILJS_PUBLIC_KEY
+        );
+        
+        console.log('Email sent successfully', result.text);
+        setFormStatus('success');
+        
+        // Reset form after success
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          message: '',
+          services: []
         });
         
-        const data = await response.json();
+        setTouched({});
         
-        if (data.success) {
-          setFormStatus('success');
-          
-          // Reset form after success
-          setFormData({
-            name: '',
-            email: '',
-            company: '',
-            message: '',
-            services: []
-          });
-          
-          setTouched({});
-          
-          // Reset success message after delay
-          setTimeout(() => setFormStatus('idle'), 5000);
-        } else {
-          console.error('Form submission error:', data.message);
-          setFormStatus('error');
-          
-          // Reset error message after delay
-          setTimeout(() => setFormStatus('idle'), 5000);
-        }
+        // Reset success message after delay
+        setTimeout(() => setFormStatus('idle'), 5000);
       } catch (error) {
         console.error('Form submission error:', error);
         setFormStatus('error');
         
         // Reset error message after delay
         setTimeout(() => setFormStatus('idle'), 5000);
+        
+        // For development/debugging - provide more info to the console
+        console.log('Full error details:', {
+          message: error.message,
+          stack: error.stack,
+          formData
+        });
       }
     }
   };
   
   return (
-    <form onSubmit={handleSubmit} className="glass-card gradient-border rounded-xl p-6 border border-gray-700 shadow-lg">
+    <form ref={form} onSubmit={handleSubmit} className="glass-card gradient-border rounded-xl p-6 border border-gray-700 shadow-lg">
       <div className="flex items-center justify-between mb-4">
         <div className="flex space-x-2">
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -192,7 +226,7 @@ const ContactForm = () => {
           <input 
             type="text" 
             id="name" 
-            name="name" 
+            name="from_name"  // Updated for EmailJS
             value={formData.name}
             onChange={handleFormChange}
             onBlur={handleBlur}
@@ -213,7 +247,7 @@ const ContactForm = () => {
           <input 
             type="email" 
             id="email" 
-            name="email"
+            name="from_email"  // Updated for EmailJS
             value={formData.email}
             onChange={handleFormChange}
             onBlur={handleBlur}
@@ -234,7 +268,7 @@ const ContactForm = () => {
           <input 
             type="text" 
             id="company" 
-            name="company"
+            name="company"  // This one stays the same
             value={formData.company}
             onChange={handleFormChange}
             className="w-full bg-gray-700 bg-opacity-50 border border-gray-600 rounded-md py-3 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all"
@@ -258,6 +292,13 @@ const ContactForm = () => {
             } rounded-md py-3 px-4 text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all`}
             placeholder="Tell us about your project..."
           ></textarea>
+
+          {/* Hidden field for services */}
+          <input 
+            type="hidden" 
+            name="services" 
+            value={formData.services.join(', ')}
+          />
           {touched.message && errors.message && (
             <p className="text-red-500 text-xs mt-1">{errors.message}</p>
           )}
