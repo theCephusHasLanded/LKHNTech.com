@@ -287,7 +287,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   title="AI Automation"
                   description="Custom workflow solutions that streamline operations while maintaining the human touch."
                   features={["Process Optimization", "Workflow Automation", "AI Integration", "Custom Solutions"]}
-                  imageUrl="https://media.istockphoto.com/id/2166183185/photo/artificial-intelligence-developer-team-meeting-at-night.webp"
+                  imageUrl="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80"
                 />
                 
                 <ServiceCard 
@@ -295,7 +295,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   title="Technology Consulting"
                   description="Strategic guidance for digital transformation with a focus on simplicity."
                   features={["Digital Strategy", "System Architecture", "Technology Roadmaps", "Implementation Planning"]}
-                  imageUrl="https://media.istockphoto.com/id/2169874293/photo/global-business-concept-communication-network-management-strategy-digital-transformation.webp"
+                  imageUrl="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80"
                 />
                 
                 <ServiceCard 
@@ -319,7 +319,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   title="Digital Ecosystem Development"
                   description="Comprehensive digital environments that connect business operations with customer experiences."
                   features={["Platform Integration", "API Development", "Microservices", "Scalable Architecture"]}
-                  imageUrl="https://media.istockphoto.com/id/2114295998/photo/asian-and-indian-developer-devops-team-discussion-about-coding-promgram-with-software.webp"
+                  imageUrl="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80"
                 />
                 
                 <ServiceCard 
