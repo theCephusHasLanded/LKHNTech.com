@@ -135,7 +135,8 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
 
   return (
     <ParallaxProvider>
-      <SmoothScroll>
+      {/* Temporarily disabled SmoothScroll to fix scrolling issues */}
+      {/* <SmoothScroll> */}
         <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-100'} text-gray-200 font-mono relative`}>
           {/* Background effects */}
           <div className="stars-bg"></div>
@@ -699,7 +700,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                             </div>
                             <div>
                               <h3 className="font-medium mb-1">Email</h3>
-                              <p className="text-gray-400">christinacephus@pursuit.org</p>
+                              <p className="text-gray-400">cephus@lkhntech.com</p>
                             </div>
                           </div>
                           <div className="flex items-start">
@@ -839,14 +840,14 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                   <div className="space-y-3">
                     <p className="text-gray-400 text-sm flex items-center space-x-2">
                       <Terminal size={14} />
-                      <span>christinacephus@pursuit.org</span>
+                      <span>cephus@lkhntech.com</span>
                     </p>
                     <p className="text-gray-400 text-sm flex items-center space-x-2">
                       <Home size={14} />
                       <span>The Bronx, New York</span>
                     </p>
                     <a
-                      href="mailto:christinacephus@pursuit.org"
+                      href="mailto:cephus@lkhntech.com"
                       className="px-4 py-2 mt-3 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-md transition-all flex items-center space-x-2 text-sm button-hover"
                     >
                       <span>Get In Touch</span>
@@ -895,7 +896,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
             </div>
           </div>
         </div>
-      </SmoothScroll>
+      {/* </SmoothScroll> */}
     </ParallaxProvider>
   );
 };

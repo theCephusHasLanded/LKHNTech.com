@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Loader, CheckCircle, AlertCircle, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { EMAILJS_USER_ID, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from '../config/emailConfig';
@@ -293,11 +293,16 @@ const ContactForm = () => {
             placeholder="Tell us about your project..."
           ></textarea>
 
-          {/* Hidden field for services */}
+          {/* Hidden fields for EmailJS */}
           <input 
             type="hidden" 
             name="services_requested" 
             value={formData.services.join(', ')}
+          />
+          <input 
+            type="hidden" 
+            name="to_email" 
+            value="cephus@lkhntech.com"
           />
           {touched.message && errors.message && (
             <p className="text-red-500 text-xs mt-1">{errors.message}</p>
