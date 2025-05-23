@@ -5,11 +5,11 @@ import {
   ArrowRight, Send, CheckCircle, AlertCircle, Zap, Compass,
   RefreshCw, Coffee, Moon, Sun
 } from 'lucide-react';
-import ParticleConstellation from './ParticleConstellation';
+// import ParticleConstellation from './ParticleConstellation'; // Temporarily disabled for performance
 import ThreeDCard from './ThreeDCard';
-import CursorTracker from './CursorTracker';
+// import CursorTracker from './CursorTracker'; // Temporarily disabled for performance
+import OptimizedBackground from './OptimizedBackground';
 import { ParallaxProvider, Parallax } from './Parallax';
-// import SmoothScroll from './SmoothScroll'; // Temporarily disabled
 import NavigationMenu from './NavigationMenu';
 import ContactForm from './ContactForm';
 import ServiceCard from './ServiceCard';
@@ -23,9 +23,9 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
   const [activeSection, setActiveSection] = useState(initialSection);
   const [darkMode, setDarkMode] = useState(true);
   const [scrollY, setScrollY] = useState(0);
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  // const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 }); // Temporarily disabled
   const [heroBackground, setHeroBackground] = useState(1);
-  const constellationRef = useRef(null);
+  // const constellationRef = useRef(null); // Temporarily disabled
 
   // Form handling moved to ContactForm component
 
@@ -53,29 +53,23 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
 
     sequence();
 
-    // Scroll event listener for parallax effects
+    // Single, optimized scroll handler for parallax only
+    let ticking = false;
     const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    // Mouse movement listener for custom cursor and constellation effect
-    const handleMouseMove = (e) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
-
-      // Subtle constellation movement
-      if (constellationRef.current) {
-        const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-        const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-        constellationRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
+    // Use passive listeners for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, [initialSection]);
 
@@ -98,8 +92,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
     return (
       <div className="flex items-center justify-center h-screen w-screen bg-gray-900 relative overflow-hidden">
         {/* Enhanced loading animation */}
-        <div className="stars-bg"></div>
-        <div className="constellation" ref={constellationRef}></div>
+        <OptimizedBackground />
 
         <div className="text-center z-10 glass-card p-10 rounded-xl">
           <div className="flex flex-col items-center justify-center mb-6">
@@ -136,14 +129,9 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
 
   return (
     <ParallaxProvider>
-      {/* Temporarily disabled SmoothScroll to fix scrolling issues */}
-      {/* <SmoothScroll> */}
-        <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-100'} text-gray-200 font-mono relative`}>
-          {/* Background effects */}
-          <div className="stars-bg"></div>
-          <div className="constellation" ref={constellationRef}></div>
-          <ParticleConstellation />
-          <CursorTracker position={cursorPosition} />
+      <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-100'} text-gray-200 font-mono relative`}>
+          {/* Optimized background effects */}
+          <OptimizedBackground />
 
           {/* Header */}
           <header className="fixed w-full top-0 z-50 glass-card">
@@ -900,7 +888,6 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
           {/* Chatbot */}
           <Chatbot />
         </div>
-      {/* </SmoothScroll> */}
     </ParallaxProvider>
   );
 };

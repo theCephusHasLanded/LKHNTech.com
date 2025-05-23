@@ -22,9 +22,11 @@ body {
   background-color: var(--color-primary);
   color: var(--color-text-primary);
   overflow-x: hidden;
-  /* Ensure normal scrolling behavior */
+  /* Ensure smooth scrolling behavior */
   position: static;
   height: auto;
+  transform: translateZ(0);
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Star constellation background */
@@ -63,10 +65,12 @@ body {
   will-change: transform;
 }
 
-/* Normalized scrolling behavior */
+/* Optimized scrolling behavior */
 html {
   scroll-behavior: smooth;
   height: 100%;
+  /* Add scroll optimization for better performance */
+  overflow-x: hidden;
 }
 
 html, body {
@@ -79,6 +83,8 @@ html, body {
 * {
   box-sizing: border-box;
 }
+
+/* Hardware acceleration handled in main body styles above */
 
 /* Modern scrollbar */
 ::-webkit-scrollbar {
@@ -251,11 +257,12 @@ html, body {
   100% { clip: rect(53px, 9999px, 14px, 0); }
 }
 
-/* Parallax effect */
+/* Optimized parallax effect */
 .parallax {
   transform: translateZ(0);
-  will-change: transform;
-  transition: transform 0.1s ease-out;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  /* Remove will-change by default, let components handle it */
 }
 
 /* Button hover effects */

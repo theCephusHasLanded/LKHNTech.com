@@ -47,8 +47,8 @@ const ParticleConstellation = () => {
       }
     }
     
-    // Create particles
-    const particleCount = Math.min(100, Math.floor(window.innerWidth * window.innerHeight / 15000));
+    // Create particles - reduced count for better performance
+    const particleCount = Math.min(window.innerWidth > 768 ? 30 : 15, 30); // Reduced further
     const particles = [];
     
     for (let i = 0; i < particleCount; i++) {
@@ -76,18 +76,26 @@ const ParticleConstellation = () => {
       }
     };
     
-    // Animation loop
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Update and draw particles
-      particles.forEach(particle => {
-        particle.update();
-        particle.draw();
-      });
-      
-      // Draw connections
-      drawConnections();
+    // Animation loop with performance throttling
+    let lastTime = 0;
+    const targetFPS = 30; // Reduced from 60fps for better performance
+    const frameInterval = 1000 / targetFPS;
+    
+    const animate = (currentTime) => {
+      if (currentTime - lastTime >= frameInterval) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Update and draw particles
+        particles.forEach(particle => {
+          particle.update();
+          particle.draw();
+        });
+        
+        // Draw connections
+        drawConnections();
+        
+        lastTime = currentTime;
+      }
       
       animationFrameId = requestAnimationFrame(animate);
     };
