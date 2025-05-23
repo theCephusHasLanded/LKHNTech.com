@@ -22,6 +22,9 @@ body {
   background-color: var(--color-primary);
   color: var(--color-text-primary);
   overflow-x: hidden;
+  /* Ensure normal scrolling behavior */
+  position: static;
+  height: auto;
 }
 
 /* Star constellation background */
@@ -60,9 +63,21 @@ body {
   will-change: transform;
 }
 
-/* Smooth scrolling */
+/* Normalized scrolling behavior */
 html {
   scroll-behavior: smooth;
+  height: 100%;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  position: static;
+}
+
+/* Reset any fixed positioning that might cause issues */
+* {
+  box-sizing: border-box;
 }
 
 /* Modern scrollbar */

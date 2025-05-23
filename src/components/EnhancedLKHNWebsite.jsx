@@ -9,12 +9,13 @@ import ParticleConstellation from './ParticleConstellation';
 import ThreeDCard from './ThreeDCard';
 import CursorTracker from './CursorTracker';
 import { ParallaxProvider, Parallax } from './Parallax';
-import SmoothScroll from './SmoothScroll';
+// import SmoothScroll from './SmoothScroll'; // Temporarily disabled
 import NavigationMenu from './NavigationMenu';
 import ContactForm from './ContactForm';
 import ServiceCard from './ServiceCard';
 import TestimonialSlider from './TestimonialSlider';
 import PortfolioShowcase from './PortfolioShowcase';
+import Chatbot from './Chatbot';
 import logoImage from '../assets/images/logo.png';
 
 const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
@@ -895,6 +896,9 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
               </div>
             </div>
           </div>
+
+          {/* Chatbot */}
+          <Chatbot />
         </div>
       {/* </SmoothScroll> */}
     </ParallaxProvider>
