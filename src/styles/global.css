@@ -23,47 +23,16 @@ body {
   color: var(--color-text-primary);
 }
 
-/* Star constellation background */
+/* Background effects disabled for clean scrolling */
 .stars-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-image: radial-gradient(2px 2px at 20vw 20vh, rgba(255, 255, 255, 0.1), transparent),
-                    radial-gradient(1px 1px at 40vw 40vh, rgba(255, 255, 255, 0.1), transparent),
-                    radial-gradient(3px 3px at 60vw 60vh, rgba(255, 255, 255, 0.05), transparent),
-                    radial-gradient(1px 1px at 80vw 80vh, rgba(255, 255, 255, 0.05), transparent),
-                    radial-gradient(2px 2px at 10vw 70vh, rgba(255, 255, 255, 0.1), transparent),
-                    radial-gradient(1px 1px at 30vw 90vh, rgba(255, 255, 255, 0.1), transparent),
-                    radial-gradient(3px 3px at 50vw 10vh, rgba(255, 255, 255, 0.05), transparent),
-                    radial-gradient(1px 1px at 70vw 30vh, rgba(255, 255, 255, 0.05), transparent);
-  background-size: 500px 500px;
-  pointer-events: none;
+  display: none;
 }
 
-/* Constellation lines */
 .constellation {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0.15;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  transform: translateZ(0);
-  will-change: transform;
+  display: none;
 }
 
-/* Simplified scrolling behavior */
-html {
-  scroll-behavior: smooth;
-}
-
+/* Normal scrolling behavior - no custom effects */
 html, body {
   margin: 0;
   padding: 0;
@@ -248,12 +217,9 @@ html, body {
   100% { clip: rect(53px, 9999px, 14px, 0); }
 }
 
-/* Optimized parallax effect */
+/* Parallax effects disabled for clean scrolling */
 .parallax {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  /* Remove will-change by default, let components handle it */
+  /* All effects removed for normal scrolling */
 }
 
 /* Button hover effects */

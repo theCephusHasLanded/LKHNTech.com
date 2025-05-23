@@ -5,10 +5,10 @@ import {
   ArrowRight, Send, CheckCircle, AlertCircle, Zap, Compass,
   RefreshCw, Coffee, Moon, Sun
 } from 'lucide-react';
-// import ParticleConstellation from './ParticleConstellation'; // Temporarily disabled for performance
+// import ParticleConstellation from './ParticleConstellation'; // Disabled for clean scrolling
 import ThreeDCard from './ThreeDCard';
-// import CursorTracker from './CursorTracker'; // Temporarily disabled for performance
-import OptimizedBackground from './OptimizedBackground';
+// import CursorTracker from './CursorTracker'; // Disabled for clean scrolling
+// import OptimizedBackground from './OptimizedBackground'; // Disabled for clean scrolling
 // import { ParallaxProvider, Parallax } from './Parallax'; // Simplified layout
 import NavigationMenu from './NavigationMenu';
 // import ContactForm from './ContactForm'; // Unused - replaced with Calendly
@@ -23,7 +23,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
   const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState(initialSection);
   const [darkMode, setDarkMode] = useState(true);
-  const [scrollY, setScrollY] = useState(0);
+  // const [scrollY, setScrollY] = useState(0); // Removed for normal scrolling
   // const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 }); // Temporarily disabled
   const [heroBackground, setHeroBackground] = useState(1);
   // const constellationRef = useRef(null); // Temporarily disabled
@@ -43,7 +43,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
         setTimeout(() => {
           const sectionElement = document.getElementById(initialSection);
           if (sectionElement) {
-            sectionElement.scrollIntoView({ behavior: 'smooth' });
+            sectionElement.scrollIntoView();
           }
         }, 100);
       }
@@ -54,32 +54,15 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
 
     sequence();
 
-    // Single, optimized scroll handler for parallax only
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    // Use passive listeners for better performance
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    // No scroll listeners - using normal browser scrolling
   }, [initialSection]);
 
-  // Handle section navigation with smooth scrolling
+  // Handle section navigation with normal scrolling
   const navigateToSection = (section) => {
     setActiveSection(section);
     const sectionElement = document.getElementById(section);
     if (sectionElement) {
-      sectionElement.scrollIntoView({ behavior: 'smooth' });
+      sectionElement.scrollIntoView();
     }
   };
 
@@ -92,8 +75,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen w-screen bg-gray-900 relative overflow-hidden">
-        {/* Enhanced loading animation */}
-        <OptimizedBackground />
+        {/* Clean loading screen */}
 
         <div className="text-center z-10 glass-card p-10 rounded-xl">
           <div className="flex flex-col items-center justify-center mb-6">
@@ -130,9 +112,8 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
 
   return (
     <div className="relative">
-      <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'} font-mono relative`}>
-          {/* Optimized background effects */}
-          <OptimizedBackground />
+      <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'} font-mono`}>
+          {/* Clean background - no effects */}
 
           {/* Header */}
           <header className="fixed w-full top-0 z-50 glass-card">
