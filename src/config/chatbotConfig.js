@@ -26,9 +26,8 @@
 export const CHATBOT_CONFIG = {
   // 🗓️ CALENDLY INTEGRATION
   calendly: {
-    enabled: false, // Set to true when Calendly is set up
-    url: "", // TODO: Add your Calendly scheduling URL
-    // Example: "https://calendly.com/christina-cephus/30min-consultation"
+    enabled: true, // Calendly is now configured
+    url: "https://calendly.com/christinacephus-pursuit/lkhntech?hide_gdpr_banner=1&background_color=b3b3b3&text_color=171a1b&primary_color=11181c",
   },
 
   // 📧 EMAIL AUTOMATION

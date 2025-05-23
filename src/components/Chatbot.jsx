@@ -96,7 +96,7 @@ const Chatbot = () => {
     return "That's interesting! To better help you find the right solution, could you tell me more about:\n\n🏢 **Your Business Context:**\n• What industry are you in?\n• What size is your team/company?\n\n⚡ **Current Challenges:**\n• What processes feel inefficient?\n• Where do you lose the most time?\n\n🎯 **Goals:**\n• What would success look like?\n• What's your timeline?\n\nThis will help me understand if Christina's human-centered approach would be a perfect fit for your needs!";
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
@@ -107,18 +107,31 @@ const Chatbot = () => {
     <>
       {/* Floating Chat Button */}
       {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 bg-gray-800 hover:bg-gray-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 border border-gray-600"
-          aria-label="Open chat"
-        >
-          <MessageCircle size={24} />
-        </button>
+        <div className="fixed bottom-6 right-6 z-[60]">
+          {/* Pulse animation ring */}
+          <div className="absolute inset-0 bg-gray-700 rounded-full animate-ping opacity-20"></div>
+          
+          <button
+            onClick={() => setIsOpen(true)}
+            className="relative bg-gray-800 hover:bg-gray-700 text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 border-2 border-gray-600 hover:border-gray-500"
+            aria-label="Open chat with LKHN Tech Assistant"
+          >
+            <MessageCircle size={24} />
+            
+            {/* Small notification badge */}
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-800"></div>
+          </button>
+          
+          {/* Tooltip */}
+          <div className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-800 text-white text-sm rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+            Chat with LKHN Tech Assistant
+          </div>
+        </div>
       )}
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-96 h-[500px] bg-gray-900 border border-gray-700 rounded-xl shadow-2xl flex flex-col overflow-hidden">
+        <div className="fixed bottom-6 right-6 z-[60] w-96 h-[500px] bg-gray-900 border border-gray-700 rounded-xl shadow-2xl flex flex-col overflow-hidden">
           {/* Header */}
           <div className="bg-gray-800 p-4 border-b border-gray-700 flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -217,7 +230,7 @@ const Chatbot = () => {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyDown}
                 placeholder="Type your message..."
                 className="flex-1 bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
               />

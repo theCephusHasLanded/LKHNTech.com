@@ -12,6 +12,7 @@ import OptimizedBackground from './OptimizedBackground';
 import { ParallaxProvider, Parallax } from './Parallax';
 import NavigationMenu from './NavigationMenu';
 import ContactForm from './ContactForm';
+import CalendlyEmbed from './CalendlyEmbed';
 import ServiceCard from './ServiceCard';
 import TestimonialSlider from './TestimonialSlider';
 import PortfolioShowcase from './PortfolioShowcase';
@@ -129,7 +130,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
 
   return (
     <ParallaxProvider>
-      <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-100'} text-gray-200 font-mono relative`}>
+      <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'} font-mono relative`}>
           {/* Optimized background effects */}
           <OptimizedBackground />
 
@@ -649,7 +650,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
               <div className="max-w-5xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
                   <div className="md:col-span-3">
-                    <ContactForm />
+                    <CalendlyEmbed />
                   </div>
 
                   <div className="md:col-span-2">

@@ -21,7 +21,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-primary);
   color: var(--color-text-primary);
-  overflow-x: hidden;
   /* Ensure smooth scrolling behavior */
   position: static;
   height: auto;
@@ -69,14 +68,13 @@ body {
 html {
   scroll-behavior: smooth;
   height: 100%;
-  /* Add scroll optimization for better performance */
-  overflow-x: hidden;
 }
 
 html, body {
   margin: 0;
   padding: 0;
   position: static;
+  overflow-x: hidden; /* Consolidated overflow control */
 }
 
 /* Reset any fixed positioning that might cause issues */
