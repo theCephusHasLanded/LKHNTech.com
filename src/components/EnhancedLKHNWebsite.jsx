@@ -9,14 +9,14 @@ import {
 import ThreeDCard from './ThreeDCard';
 // import CursorTracker from './CursorTracker'; // Temporarily disabled for performance
 import OptimizedBackground from './OptimizedBackground';
-import { ParallaxProvider, Parallax } from './Parallax';
+// import { ParallaxProvider, Parallax } from './Parallax'; // Simplified layout
 import NavigationMenu from './NavigationMenu';
-import ContactForm from './ContactForm';
+// import ContactForm from './ContactForm'; // Unused - replaced with Calendly
 import CalendlyEmbed from './CalendlyEmbed';
 import ServiceCard from './ServiceCard';
 import TestimonialSlider from './TestimonialSlider';
 import PortfolioShowcase from './PortfolioShowcase';
-import Chatbot from './Chatbot';
+import SimpleChatbot from './SimpleChatbot';
 import logoImage from '../assets/images/logo.png';
 
 const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
@@ -129,7 +129,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
   }
 
   return (
-    <ParallaxProvider>
+    <div className="relative">
       <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'} font-mono relative`}>
           {/* Optimized background effects */}
           <OptimizedBackground />
@@ -195,9 +195,10 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
               />
             </div>
 
-            <Parallax speed={-0.5} className="absolute top-20 right-10 opacity-20 hidden md:block">
+            {/* Simplified background element */}
+            <div className="absolute top-20 right-10 opacity-20 hidden md:block">
               <div className="text-[120px] font-bold text-gray-700">LKHN</div>
-            </Parallax>
+            </div>
 
             <div className="container mx-auto px-4 relative z-10">
               <div className="glass-card gradient-border rounded-xl p-8 border border-gray-700 shadow-lg transform transition-all duration-500">
@@ -319,9 +320,10 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
 
           {/* Services Section - Enhanced with 3D cards */}
           <section id="services" className={`min-h-screen py-20 relative ${activeSection === 'services' ? 'block' : 'block'}`}>
-            <Parallax speed={-0.2} className="absolute top-40 left-10 opacity-10 hidden md:block">
+            {/* Simplified background element */}
+            <div className="absolute top-40 left-10 opacity-10 hidden md:block">
               <div className="text-[150px] font-bold text-gray-700 rotate-90">NYC</div>
-            </Parallax>
+            </div>
 
             <div className="container mx-auto px-4 relative z-10">
               <div className="text-center mb-16">
@@ -888,9 +890,9 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
 
         </div>
         
-        {/* Chatbot - positioned outside main container for proper z-index */}
-        <Chatbot />
-    </ParallaxProvider>
+        {/* Simple Chatbot - positioned at root level with maximum z-index */}
+        <SimpleChatbot />
+    </div>
   );
 };
 
