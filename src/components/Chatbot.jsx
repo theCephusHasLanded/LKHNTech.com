@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, User, Calendar, Mail } from 'lucide-react';
+import { CHATBOT_CONFIG } from '../config/chatbotConfig';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +38,7 @@ const Chatbot = () => {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate bot response
+    // Simulate bot response with configurable delay
     setTimeout(() => {
       const botResponse = generateBotResponse(inputValue);
       setMessages(prev => [...prev, {
@@ -47,35 +48,52 @@ const Chatbot = () => {
         timestamp: new Date()
       }]);
       setIsTyping(false);
-    }, 1000);
+    }, CHATBOT_CONFIG.settings.typingDelay);
+  };
+
+  // Placeholder for future integrations
+  const API_ENDPOINTS = {
+    qualifyLead: '/api/qualify-lead', // TODO: Implement lead qualification API
+    bookConsultation: '/api/book-consultation', // TODO: Implement Calendly integration
+    sendEmail: '/api/send-email' // TODO: Implement email automation
   };
 
   const generateBotResponse = (userInput) => {
     const input = userInput.toLowerCase();
     
-    // Basic keyword matching for demo
+    // Enhanced keyword matching with lead qualification
     if (input.includes('price') || input.includes('cost') || input.includes('pricing')) {
-      return "💰 Our pricing is customized based on your specific needs. I'd love to understand your project better. What type of business challenges are you looking to solve? I can connect you with Christina for a free 30-minute consultation to discuss pricing.";
+      return "💰 Our pricing is customized based on your specific needs. I'd love to understand your project better. What type of business challenges are you looking to solve?\n\n🗓️ I can connect you with Christina for a free 30-minute consultation to discuss pricing in detail. Would you like me to check her availability?";
     }
     
-    if (input.includes('ai') || input.includes('automation')) {
-      return "🤖 Great! Christina specializes in AI automation that maintains the human touch. She helps businesses streamline operations while keeping people at the center. What specific processes are you looking to automate?";
+    if (input.includes('ai') || input.includes('automation') || input.includes('artificial intelligence')) {
+      return "🤖 Excellent! Christina specializes in AI automation that maintains the human touch. She helps businesses streamline operations while keeping people at the center.\n\n💡 Recent projects include:\n• Customer service automation that feels personal\n• Workflow optimization saving 20+ hours/week\n• Intelligent data processing systems\n\nWhat specific processes are you looking to automate?";
     }
     
-    if (input.includes('website') || input.includes('design') || input.includes('interface')) {
-      return "🎨 Perfect! LKHN Tech creates minimalist interfaces that reduce cognitive load and enhance user focus. Christina believes in 'less is more' when it comes to effective design. What kind of digital experience are you looking to create?";
+    if (input.includes('website') || input.includes('design') || input.includes('interface') || input.includes('ui') || input.includes('ux')) {
+      return "🎨 Perfect! LKHN Tech creates minimalist interfaces that reduce cognitive load and enhance user focus. Christina believes in 'less is more' when it comes to effective design.\n\n✨ Our approach includes:\n• User research and testing\n• Clean, intuitive layouts\n• Performance optimization\n• Mobile-first design\n\nWhat kind of digital experience are you looking to create?";
     }
     
-    if (input.includes('consultation') || input.includes('meeting') || input.includes('call')) {
-      return "📅 I'd be happy to help you schedule a consultation with Christina! She offers a free 30-minute intro call to discuss your needs. What's your name and email? I can send you the booking link.";
+    if (input.includes('consultation') || input.includes('meeting') || input.includes('call') || input.includes('schedule') || input.includes('calendly')) {
+      return CHATBOT_CONFIG.calendly.enabled 
+        ? `📅 Perfect! Christina offers free 30-minute consultations to discuss your specific needs.\n\n🔗 Click the button below to choose a convenient time:\n\n**[BOOK_CONSULTATION_BUTTON]**\n\nOr let me know if you have any other questions first!`
+        : "📅 I'd be happy to help you schedule a consultation with Christina! She offers a free 30-minute intro call to discuss your needs.\n\n📧 Please send an email to cephus@lkhntech.com with your availability, and Christina will coordinate directly with you.\n\n📋 Include:\n• Your name\n• Best times to meet\n• Brief description of your project";
     }
     
-    if (input.includes('help') || input.includes('services')) {
-      return "🚀 LKHN Tech offers several key services:\n\n• AI Automation (workflow optimization)\n• Technology Consulting (digital strategy)\n• Minimalist Interface Design (UX/UI)\n• Work-Life Balance Solutions (digital wellbeing)\n• Digital Ecosystem Development\n• Performance Optimization\n\nWhich of these areas interests you most?";
+    if (input.includes('help') || input.includes('services') || input.includes('what do you do')) {
+      return "🚀 LKHN Tech offers several key services:\n\n🤖 **AI Automation** - Workflow optimization that keeps humans in control\n💻 **Technology Consulting** - Strategic digital transformation guidance\n🎨 **Minimalist Interface Design** - Clean UX/UI that enhances focus\n💆 **Work-Life Balance Solutions** - Digital wellbeing and productivity\n🌐 **Digital Ecosystem Development** - Comprehensive platform integration\n⚡ **Performance Optimization** - Speed and efficiency improvements\n\nWhich of these areas interests you most?";
     }
 
-    // Default response
-    return "That's interesting! To better help you, could you tell me more about:\n\n• Your business or industry\n• What challenges you're facing\n• What you're hoping to achieve\n\nThis will help me understand if Christina's human-centered approach would be a good fit for your needs.";
+    if (input.includes('email') || input.includes('@')) {
+      return "📧 Great! I've noted your email. Let me connect you with Christina for a personalized consultation.\n\n🎯 Based on our conversation, I can see you're interested in human-centered technology solutions. Christina would love to discuss how LKHN Tech can help optimize your specific situation.\n\n📅 Shall I send you a calendar link to book a free 30-minute consultation?";
+    }
+
+    if (input.includes('yes') || input.includes('sure') || input.includes('ok') || input.includes('sounds good')) {
+      return "🎉 Wonderful! Here's what happens next:\n\n1️⃣ I'll send you Christina's calendar link\n2️⃣ You choose a convenient 30-minute slot\n3️⃣ She'll prepare a personalized consultation based on our chat\n\n📋 **Free Consultation Includes:**\n• Analysis of your specific needs\n• Customized solution recommendations\n• Timeline and budget discussion\n• Next steps planning\n\n🔗 Would you like me to send the booking link now?";
+    }
+
+    // Default response with qualification questions
+    return "That's interesting! To better help you find the right solution, could you tell me more about:\n\n🏢 **Your Business Context:**\n• What industry are you in?\n• What size is your team/company?\n\n⚡ **Current Challenges:**\n• What processes feel inefficient?\n• Where do you lose the most time?\n\n🎯 **Goals:**\n• What would success look like?\n• What's your timeline?\n\nThis will help me understand if Christina's human-centered approach would be a perfect fit for your needs!";
   };
 
   const handleKeyPress = (e) => {
@@ -141,7 +159,33 @@ const Chatbot = () => {
                     ? 'bg-gray-800 text-gray-200'
                     : 'bg-gray-700 text-gray-100'
                 }`}>
-                  <p className="whitespace-pre-line">{message.text}</p>
+                  <p className="whitespace-pre-line">
+                    {message.text.replace('**[BOOK_CONSULTATION_BUTTON]**', '')}
+                  </p>
+                  
+                  {/* Action buttons for bot messages */}
+                  {message.sender === 'bot' && message.text.includes('[BOOK_CONSULTATION_BUTTON]') && (
+                    <div className="mt-3 space-y-2">
+                      {CHATBOT_CONFIG.calendly.enabled ? (
+                        <button
+                          onClick={() => window.open(CHATBOT_CONFIG.calendly.url, '_blank')}
+                          className="w-full bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-md text-xs font-medium transition-colors flex items-center justify-center space-x-2"
+                        >
+                          <Calendar size={14} />
+                          <span>Book Free Consultation</span>
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => window.open('mailto:cephus@lkhntech.com', '_blank')}
+                          className="w-full bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-md text-xs font-medium transition-colors flex items-center justify-center space-x-2"
+                        >
+                          <Mail size={14} />
+                          <span>Email Christina</span>
+                        </button>
+                      )}
+                    </div>
+                  )}
+                  
                   <p className="text-xs text-gray-500 mt-1">
                     {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </p>

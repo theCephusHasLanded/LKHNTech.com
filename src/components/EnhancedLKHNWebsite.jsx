@@ -885,9 +885,10 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
             </div>
           </div>
 
-          {/* Chatbot */}
-          <Chatbot />
         </div>
+        
+        {/* Chatbot - positioned outside main container for proper z-index */}
+        <Chatbot />
     </ParallaxProvider>
   );
 };
