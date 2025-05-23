@@ -16,7 +16,7 @@ import CalendlyEmbed from './CalendlyEmbed';
 import ServiceCard from './ServiceCard';
 import TestimonialSlider from './TestimonialSlider';
 import PortfolioShowcase from './PortfolioShowcase';
-import SimpleChatbot from './SimpleChatbot';
+import IntelligentChatbot from './IntelligentChatbot';
 import logoImage from '../assets/images/logo.png';
 
 const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
@@ -890,8 +890,8 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
 
         </div>
         
-        {/* Simple Chatbot - positioned at root level with maximum z-index */}
-        <SimpleChatbot />
+        {/* Intelligent Chatbot - positioned at root level with maximum z-index */}
+        <IntelligentChatbot />
     </div>
   );
 };
