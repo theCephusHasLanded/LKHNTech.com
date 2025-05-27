@@ -9,8 +9,16 @@ export const ParallaxProvider = ({ children }) => {
   const [scrollY, setScrollY] = useState(0);
   
   useEffect(() => {
+    // Use throttled scroll for parallax context
+    let ticking = false;
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -57,26 +65,26 @@ export const Parallax = ({
     };
   }, [scrollY]);
   
-  // Check if element is in view
+  // Use Intersection Observer instead of scroll listener for visibility
   useEffect(() => {
-    const checkIfInView = () => {
-      if (!elementRef.current) return;
-      
-      const rect = elementRef.current.getBoundingClientRect();
-      const isVisible = 
-        rect.top < windowHeight && 
-        rect.bottom > 0;
-      
-      setInView(isVisible);
-    };
+    if (!elementRef.current) return;
     
-    checkIfInView();
-    window.addEventListener('scroll', checkIfInView, { passive: true });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      {
+        rootMargin: '20% 0px',
+        threshold: 0
+      }
+    );
+    
+    observer.observe(elementRef.current);
     
     return () => {
-      window.removeEventListener('scroll', checkIfInView);
+      observer.disconnect();
     };
-  }, [windowHeight]);
+  }, []);
   
   // Calculate parallax offset
   const calculateOffset = () => {
@@ -93,7 +101,7 @@ export const Parallax = ({
     transform: direction === 'vertical' 
       ? `translate3d(0, ${offset}px, 0)` 
       : `translate3d(${offset}px, 0, 0)`,
-    willChange: 'transform',
+    willChange: inView ? 'transform' : 'auto', // Only optimize when visible
   };
   
   return (

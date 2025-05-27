@@ -841,6 +841,14 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                 
                 <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} LKHN Technologies. All rights reserved.</p>
                 <p className="text-gray-600 text-xs mt-2">Creating digital interfaces that optimize the human experience.</p>
+                <div className="mt-4 flex justify-center space-x-6">
+                  <a href="/privacy" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">
+                    Privacy Policy
+                  </a>
+                  <a href="mailto:cephus@lkhntech.com" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">
+                    Contact
+                  </a>
+                </div>
               </div>
             </div>
           </footer>

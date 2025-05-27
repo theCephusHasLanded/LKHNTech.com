@@ -19,7 +19,17 @@
       "Bash(grep:*)",
       "Bash(grep:*)",
       "Bash(npm install:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(public/android-chrome-*.png)",
+      "Bash(public/favicon-*.png)",
+      "Bash(cp:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(rm:*)",
+      "Bash(grep:*)",
+      "WebFetch(domain:lkhntech.com)",
+      "Bash(git commit:*)",
+      "Bash(ls:*)"
     ],
     "deny": []
   }
