@@ -42,6 +42,10 @@
       "dest": "/index.html"
     },
     {
+      "src": "/terms",
+      "dest": "/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }

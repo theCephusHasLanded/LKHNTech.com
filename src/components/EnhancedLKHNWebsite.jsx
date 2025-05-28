@@ -17,6 +17,7 @@ import ServiceCard from './ServiceCard';
 import TestimonialSlider from './TestimonialSlider';
 import PortfolioShowcase from './PortfolioShowcase';
 import IntelligentChatbot from './IntelligentChatbot';
+import Footer from './Footer';
 import logoImage from '../assets/images/logo.png';
 
 const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
@@ -878,6 +879,9 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
           </div>
 
         </div>
+        
+        {/* Footer */}
+        <Footer />
         
         {/* Intelligent Chatbot - positioned at root level with maximum z-index */}
         <IntelligentChatbot />

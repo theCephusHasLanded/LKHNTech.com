@@ -6,7 +6,9 @@ import AboutPage from './pages/AboutPage';
 import MarketsPage from './pages/MarketsPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
 import NotFoundPage from './pages/NotFoundPage';
+import CookieConsent from './components/CookieConsent';
 import './styles/global.css';
 
 function App() {
@@ -24,9 +26,11 @@ function App() {
         <Route path="/markets" element={<MarketsPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms" element={<TermsOfServicePage />} />
         <Route path="/404" element={<NotFoundPage />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
+      <CookieConsent />
     </Router>
   );
 }
