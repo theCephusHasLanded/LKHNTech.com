@@ -3,7 +3,7 @@ import {
   Loader, Terminal, Monitor, Database, Code, Users, Cpu, Server,
   BarChart2, BookOpen, Heart, Home, Globe, Briefcase, Award,
   ArrowRight, Send, CheckCircle, AlertCircle, Zap, Compass,
-  RefreshCw, Coffee, Moon, Sun
+  RefreshCw, Coffee, Moon, Sun, X, Shield
 } from 'lucide-react';
 // import ParticleConstellation from './ParticleConstellation'; // Disabled for clean scrolling
 import ThreeDCard from './ThreeDCard';
@@ -17,7 +17,6 @@ import ServiceCard from './ServiceCard';
 import TestimonialSlider from './TestimonialSlider';
 import PortfolioShowcase from './PortfolioShowcase';
 import IntelligentChatbot from './IntelligentChatbot';
-import Footer from './Footer';
 import logoImage from '../assets/images/logo.png';
 
 const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
@@ -27,6 +26,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
   // const [scrollY, setScrollY] = useState(0); // Removed for normal scrolling
   // const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 }); // Temporarily disabled
   const [heroBackground, setHeroBackground] = useState(1);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   // const constellationRef = useRef(null); // Temporarily disabled
 
   // Form handling moved to ContactForm component
@@ -753,6 +753,109 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
             </div>
           </section>
 
+          {/* Footer */}
+          <footer className="bg-gray-800 bg-opacity-30 backdrop-blur-md py-12 mt-12 border-t border-gray-800">
+            <div className="container mx-auto px-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div className="md:col-span-2">
+                  <div className="flex items-center mb-4">
+                    <img
+                      src={logoImage}
+                      alt="LKHN Technologies Logo"
+                      className="h-10 w-auto mr-3"
+                    />
+                    <div className="text-2xl font-bold inline-flex items-center">
+                      <span className="text-gray-400">LKHN</span>
+                      <span className="text-gray-200">Tech</span>
+                      <span className="animate-pulse ml-1">_</span>
+                    </div>
+                  </div>
+                  <p className="text-gray-400 mb-6 max-w-md">
+                    Creating digital interfaces that optimize the human experience through minimalist design and intelligent automation in the post-AI era.
+                  </p>
+                  <div className="flex space-x-4">
+                    <a href="https://www.linkedin.com/in/thecephus" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="https://www.instagram.com/cephus.ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="https://www.pinterest.com/LKHiTechNews" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 12a4 4 0 0 1 8 0c0 2.667-1.333 4-4 6-2.667-2-4-3.333-4-6"></path><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="8" r="0.5"></circle></svg>
+                    </a>
+                    <a href="https://github.com/TheCephusHasLanded" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-200 transition-all p-2 bg-gray-800 rounded-md">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-gray-200 font-bold mb-4 text-lg">Quick Links</h4>
+                  <div className="flex flex-col space-y-3">
+                    {['home', 'services', 'about', 'markets', 'contact'].map((section) => (
+                      <a
+                        key={section}
+                        href={`#${section}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigateToSection(section);
+                        }}
+                        className="text-gray-400 hover:text-gray-200 text-sm text-left transition-all flex items-center space-x-2"
+                      >
+                        <ArrowRight size={12} />
+                        <span>{section.charAt(0).toUpperCase() + section.slice(1)}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-gray-200 font-bold mb-4 text-lg">Contact</h4>
+                  <div className="space-y-3">
+                    <p className="text-gray-400 text-sm flex items-center space-x-2">
+                      <Terminal size={14} />
+                      <span>cephus@lkhntech.com</span>
+                    </p>
+                    <p className="text-gray-400 text-sm flex items-center space-x-2">
+                      <Home size={14} />
+                      <span>The Bronx, New York</span>
+                    </p>
+                    <a
+                      href="mailto:cephus@lkhntech.com"
+                      className="px-4 py-2 mt-3 bg-gray-700 hover:bg-gray-600 border border-gray-600 rounded-md transition-all flex items-center space-x-2 text-sm button-hover"
+                    >
+                      <span>Get In Touch</span>
+                      <Send size={12} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-gray-800 mt-10 pt-8 text-center">
+                <div className="flex justify-center mb-4">
+                  <img
+                    src={logoImage}
+                    alt="LKHN Technologies Logo"
+                    className="h-8 w-auto"
+                  />
+                </div>
+                
+                <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} LKHN Technologies. All rights reserved.</p>
+                <p className="text-gray-600 text-xs mt-2">Creating digital interfaces that optimize the human experience.</p>
+                <div className="mt-4 flex justify-center space-x-6">
+                  <button 
+                    onClick={() => setShowPrivacyModal(true)}
+                    className="text-gray-500 hover:text-gray-300 text-xs transition-colors"
+                  >
+                    Privacy Policy
+                  </button>
+                  <a href="mailto:cephus@lkhntech.com" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">
+                    Contact
+                  </a>
+                </div>
+              </div>
+            </div>
+          </footer>
 
           {/* Enhanced Floating Navigation for Mobile */}
           <div className="md:hidden fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
@@ -780,8 +883,97 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
 
         </div>
         
-        {/* Footer */}
-        <Footer />
+        {/* Privacy Policy Modal */}
+        {showPrivacyModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+            <div className="bg-gray-900 rounded-xl border border-gray-700 shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-6 border-b border-gray-700">
+                <div className="flex items-center space-x-3">
+                  <Shield className="text-gray-400" size={24} />
+                  <h2 className="text-xl font-bold text-white">Privacy Policy</h2>
+                </div>
+                <button
+                  onClick={() => setShowPrivacyModal(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6 space-y-6">
+                <p className="text-sm text-gray-500">Last Updated: May 27, 2025</p>
+                
+                <div className="space-y-6">
+                  <section>
+                    <p className="text-gray-300 leading-relaxed">
+                      LKHN Technologies ("we", "our", or "us") respects your privacy and is committed to protecting the personal information you share while using our services.
+                    </p>
+                  </section>
+
+                  <section>
+                    <h3 className="text-lg font-bold text-gray-200 mb-3">Information We Collect</h3>
+                    <p className="text-gray-300 mb-3">We may collect the following types of information:</p>
+                    <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
+                      <li>Publicly available news data from RSS feeds</li>
+                      <li>Email address and name (if you subscribe to our newsletter)</li>
+                      <li>Basic analytics data (if enabled)</li>
+                    </ul>
+                  </section>
+
+                  <section>
+                    <h3 className="text-lg font-bold text-gray-200 mb-3">How We Use Your Information</h3>
+                    <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
+                      <li>Deliver customized newsletter content</li>
+                      <li>Improve our automated systems and summaries</li>
+                      <li>Monitor abuse, spam, and unauthorized usage</li>
+                    </ul>
+                    <p className="text-gray-300 mt-3 font-semibold">
+                      We do not use your data for advertising or resell your information to third parties.
+                    </p>
+                  </section>
+
+                  <section>
+                    <h3 className="text-lg font-bold text-gray-200 mb-3">AI & Automation Disclosure</h3>
+                    <p className="text-gray-300">
+                      We use automated systems and AI agents to process and stylize content. These agents only process structured, public data and outputs are reviewed before publication. We do not train AI models on user-submitted content.
+                    </p>
+                  </section>
+
+                  <section>
+                    <h3 className="text-lg font-bold text-gray-200 mb-3">Your Rights</h3>
+                    <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
+                      <li>Request deletion of your data at any time</li>
+                      <li>Opt out of newsletter communications</li>
+                      <li>Contact us for data questions via cephus@lkhntech.com</li>
+                    </ul>
+                  </section>
+
+                  <section>
+                    <h3 className="text-lg font-bold text-gray-200 mb-3">Contact Us</h3>
+                    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                      <p className="text-gray-200 font-semibold">Christina Cephus</p>
+                      <p className="text-gray-300">Founder, LKHN Technologies</p>
+                      <p className="text-gray-300">
+                        <a href="mailto:cephus@lkhntech.com" className="text-gray-400 hover:text-gray-200 transition-colors">
+                          cephus@lkhntech.com
+                        </a>
+                      </p>
+                    </div>
+                  </section>
+
+                  <section className="bg-gray-800 bg-opacity-30 rounded-lg p-4 border-l-4 border-gray-500">
+                    <h3 className="text-lg font-bold mb-2 text-gray-200">TLDR</h3>
+                    <p className="text-gray-300">
+                      We care about tech, not your data. We don't sell, spam, or track you beyond what's necessary to run our site and share cool AI+tech news.
+                    </p>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         
         {/* Intelligent Chatbot - positioned at root level with maximum z-index */}
         <IntelligentChatbot />
