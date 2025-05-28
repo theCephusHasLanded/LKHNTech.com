@@ -36,20 +36,6 @@
       "destination": "/index.html" 
     }
   ],
-  "routes": [
-    {
-      "src": "/privacy",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/terms",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
   "cleanUrls": true,
   "trailingSlash": false
 }
