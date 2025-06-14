@@ -274,10 +274,24 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                       className="h-8 object-contain filter invert"
                     />
                   </a>
+                   <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img
+                      src="https://www.svgrepo.com/show/332216/amazon.svg"
+                      alt="Amazon"
+                      className="h-8 object-contain filter invert"
+                    />
+                  </a>
                   <a href="https://www.pursuit.org" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
                     <img
                       src="https://logosandtypes.com/wp-content/uploads/2024/06/pursuit.svg"
-                      alt="Pursuit.org"
+                      alt="Pursuit"
+                      className="h-8 object-contain filter invert"
+                    />
+                  </a>
+                    <a href="https://www.uber.com" target="_blank" rel="noopener noreferrer" className="transition-all hover:opacity-100 opacity-70">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/5/58/Uber_logo_2018.svg"
+                      alt="Uber"
                       className="h-8 object-contain filter invert"
                     />
                   </a>
@@ -839,11 +853,11 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
                     className="h-8 w-auto"
                   />
                 </div>
-                
+
                 <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} LKHN Technologies. All rights reserved.</p>
                 <p className="text-gray-600 text-xs mt-2">Creating digital interfaces that optimize the human experience.</p>
                 <div className="mt-4 flex justify-center space-x-6">
-                  <button 
+                  <button
                     onClick={() => setShowPrivacyModal(true)}
                     className="text-gray-500 hover:text-gray-300 text-xs transition-colors"
                   >
@@ -882,7 +896,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
           </div>
 
         </div>
-        
+
         {/* Privacy Policy Modal */}
         {showPrivacyModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
@@ -904,7 +918,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
               {/* Modal Content */}
               <div className="p-6 space-y-6">
                 <p className="text-sm text-gray-500">Last Updated: May 27, 2025</p>
-                
+
                 <div className="space-y-6">
                   <section>
                     <p className="text-gray-300 leading-relaxed">
@@ -974,7 +988,7 @@ const EnhancedLKHNWebsite = ({ initialSection = 'home' }) => {
             </div>
           </div>
         )}
-        
+
         {/* Intelligent Chatbot - positioned at root level with maximum z-index */}
         <IntelligentChatbot />
     </div>
